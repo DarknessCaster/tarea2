@@ -1,5 +1,5 @@
-#ifndef IPV4MODIFICADO_H
-#define IPV4MODIFICADO_H
+#ifndef IP_H
+#define IP_H
 
 #include <stdio.h>
 #define BYTE unsigned char
