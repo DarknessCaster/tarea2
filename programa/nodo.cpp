@@ -23,23 +23,43 @@ int main(int nargs, char* arg_arr[]){
 
         printf("IP del nodo: %s\n", ip_nodo);
         
-        FILE *rx_stream = fopen(puerto_rx, "r");
-        FILE *tx_stream = fopen(puerto_tx, "w");
+        FILE *vport_rx = fopen(puerto_rx, "r");
+        FILE *vport_tx = fopen(puerto_tx, "w");
 
         if(strcmp(ip_nodo, ip_A) == 0){
             printf("Nodo A iniciado correctamente\n");
+            printf("A quien desea enviar el mensaje?\n");
+            printf("1. B\n2. C\n3. D\n4. E\n5. A todos (broadcast)\n");
+            printf("Ingrese una opcion: ");
+            scanf("%d", opcion);
         }
         else if(strcmp(ip_nodo, ip_B) == 0){
             printf("Nodo B iniciado correctamente\n");
+            printf("A quien desea enviar el mensaje?\n");
+            printf("1. A\n2. C\n3. D\n4. E\n5. A todos (broadcast)\n");
+            printf("Ingrese una opcion: ");
+            scanf("%d", opcion);
         }
         else if(strcmp(ip_nodo, ip_C) == 0){
             printf("Nodo C iniciado correctamente\n");
+            printf("A quien desea enviar el mensaje?\n");
+            printf("1. A\n2. B\n3. D\n4. E\n5. A todos (broadcast)\n");
+            printf("Ingrese una opcion: ");
+            scanf("%d", opcion);
         }
         else if(strcmp(ip_nodo, ip_D) == 0){
             printf("Nodo D iniciado correctamente\n");
+            printf("A quien desea enviar el mensaje?\n");
+            printf("1. A\n2. B\n3. C\n4. E\n5. A todos (broadcast)\n");
+            printf("Ingrese una opcion: ");
+            scanf("%d", opcion);
         }
         else if(strcmp(ip_nodo, ip_E) == 0){
             printf("Nodo E iniciado correctamente\n");
+            printf("A quien desea enviar el mensaje?\n");
+            printf("1. A\n2. B\n3. C\n4. D\n5. A todos (broadcast)\n");
+            printf("Ingrese una opcion: ");
+            scanf("%d", opcion);
         }
     } else{
         printf("Utilizar:\n");
