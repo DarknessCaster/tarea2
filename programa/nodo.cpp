@@ -40,7 +40,7 @@ int main(int nargs, char* arg_arr[]){
             }
             getchar();
             switch(opcion){
-                case 1:
+                case '1':
                     convertir_ip(ip_B, paquete.ip_destino);
                     imprimir_ip(paquete.ip_destino);
                     break;
