@@ -6,6 +6,9 @@ int opcion = 0;
 
 int main(int nargs, char* arg_arr[]){
     if(nargs == 4){
+        const char* ip_nodo = arg_arr[1];
+        const char* puerto_tx = arg_arr[2];
+        const char* puerto_rx = arg_arr[3];
         do {
             printf("\n================== MENU ==================\n");
             printf("1. Enviar mensaje de prueba\n");
