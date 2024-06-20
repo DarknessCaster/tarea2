@@ -2,6 +2,7 @@
 #include "serial.h"
 #include "slip.h"
 #include "ip.h"
+#include "funcionesIP.h"
 #include <string.h>
 
 #define MAX_DATA_SIZE 1500
@@ -26,7 +27,7 @@ int main(int nargs, char* arg_arr[]){
         FILE *vport_tx = fopen(puerto_tx, "w");
 
         if(strcmp(ip_nodo, ip_A) == 0){
-            paquete.ip_origen = ip_A;
+            convertir_ip(ip_A, paquete.ip_origen);
             printf("\nNodo A iniciado correctamente\n");
             printf("A quien desea enviar el mensaje?\n");
             printf("1. B\n2. C\n3. D\n4. E\n5. A todos (broadcast)\n");
@@ -34,20 +35,20 @@ int main(int nargs, char* arg_arr[]){
             scanf("%d", &opcion);
             switch(opcion){
                 case 1:
-                    paquete.ip_destino = ip_B;
+                    convertir_ip(ip_A, paquete.ip_origen);
                     printf("Ip de destino: %s", paquete.ip_destino);
                     break;
                 case 2:
-                    paquete.ip_destino = ip_C;
+                    //paquete.ip_destino = ip_C;
                     break;
                 case 3:
-                    paquete.ip_destino = ip_D;
+                    //paquete.ip_destino = ip_D;
                     break;
                 case 4:
-                    paquete.ip_destino = ip_E;
+                    //paquete.ip_destino = ip_E;
                     break;
                 case 5:
-                    paquete.ip_destino = ip_broadcast;
+                    //paquete.ip_destino = ip_broadcast;
                     break;
                 default:
 
