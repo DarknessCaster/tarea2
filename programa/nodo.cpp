@@ -2,8 +2,14 @@
 #include "serial.h"
 #include "slip.h"
 #include "ip.h"
+#include <string.h>
 
 #define MAX_DATA_SIZE 1500
+const char* ip_A = "A.A.A.A";
+const char* ip_B = "A.A.A.A";
+const char* ip_C = "A.A.A.A";
+const char* ip_D = "A.A.A.A";
+const char* ip_E = "A.A.A.A";
 
 int main(int nargs, char* arg_arr[]){
     if(nargs == 4){
@@ -18,6 +24,10 @@ int main(int nargs, char* arg_arr[]){
         FILE *rx_stream = fopen(puerto_rx, "r");
         FILE *tx_stream = fopen(puerto_tx, "w");
 
+        if(strcmp(ip_nodo, "A.A.A.A") == 0){
+            printf("Nodo A iniciado correctamente\n");
+            printf("========= MENU =========");
+        }
         printf("Ingrese el mensaje a enviar ");
         do {
             printf("\n================== MENU ==================\n");
