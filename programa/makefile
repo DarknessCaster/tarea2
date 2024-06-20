@@ -3,10 +3,11 @@ all:
 	g++ -Wall slip.cpp -c
 	g++ -Wall chat.cpp -c
 	g++ -Wall nodo.cpp -c
+	g++ -Wall funcionesIP.cpp -c
 	g++ -Wall slip.o serial.o chat.o -o chat
-	g++ -Wall slip.o serial.o nodo.o -o nodo
+	g++ -Wall slip.o serial.o funcionesIP.o nodo.o -o nodo
 nodo:
-	g++ -Wall slip.o serial.o nodo.o -o nodo
+	g++ -Wall slip.o serial.o nodo.o funcionesIP.o -o nodo
 mk_socket:
 	g++ -Wall virtualSocket.cpp -o virtualSocket
 run_socket_1_2:

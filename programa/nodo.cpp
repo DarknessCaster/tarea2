@@ -51,7 +51,7 @@ int main(int nargs, char* arg_arr[]){
                     //paquete.ip_destino = ip_broadcast;
                     break;
                 default:
-
+                    break;
             }
         }
         else if(strcmp(ip_nodo, ip_B) == 0){
