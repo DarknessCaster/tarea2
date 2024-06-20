@@ -37,7 +37,7 @@ int main(int nargs, char* arg_arr[]){
             switch(opcion){
                 case 1:
                     convertir_ip(ip_B, paquete.ip_destino);
-                    printf("Ip de destino: %s", paquete.ip_destino);
+                    imprimir_ip(paquete.ip_destino);
                     break;
                 case 2:
                     //paquete.ip_destino = ip_C;
