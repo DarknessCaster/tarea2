@@ -2,6 +2,7 @@
 #define FUNCIONESIP_H
 
 void encapsularIP();
-void convertir_ip(const char* ip_str, BYTE ip_array[4]);
+void convertir_ip(const char* ip_str, BYTE ip[4]);
+void imprimir_ip(BYTE ip[4]);
 
 #endif
