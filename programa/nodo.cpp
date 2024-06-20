@@ -10,9 +10,14 @@ int main(int nargs, char* arg_arr[]){
         int opcion = 0;
         struct IP paquete;
         char msg[MAX_DATA_SIZE];
+
         const char* ip_nodo = arg_arr[1];
         const char* puerto_tx = arg_arr[2];
         const char* puerto_rx = arg_arr[3];
+
+        FILE *rx_stream = fopen(puerto_rx, "r");
+        FILE *tx_stream = fopen(puerto_tx, "w");
+        
         printf("Ingrese el mensaje a enviar ");
         do {
             printf("\n================== MENU ==================\n");
