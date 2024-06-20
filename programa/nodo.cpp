@@ -15,7 +15,7 @@ const char* ip_broadcast = "F.F.F.F";
 
 int main(int nargs, char* arg_arr[]){
     if(nargs == 4){
-        int opcion = 0;
+        int opcion;
         struct IP paquete;
         char msg[MAX_DATA_SIZE];
 
@@ -33,7 +33,7 @@ int main(int nargs, char* arg_arr[]){
             printf("A quien desea enviar el mensaje?\n");
             printf("1. B\n2. C\n3. D\n4. E\n5. A todos (broadcast)\n");
             printf("Ingrese una opcion: ");
-            scanf("%d", &opcion);
+            scanf("%i", &opcion);
             switch(opcion){
                 case 1:
                     convertir_ip(ip_B, paquete.ip_destino);
