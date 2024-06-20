@@ -17,7 +17,8 @@ int main(int nargs, char* arg_arr[]){
 
         FILE *rx_stream = fopen(puerto_rx, "r");
         FILE *tx_stream = fopen(puerto_tx, "w");
-        
+
+        switch(ip_nodo)
         printf("Ingrese el mensaje a enviar ");
         do {
             printf("\n================== MENU ==================\n");

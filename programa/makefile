@@ -15,15 +15,15 @@ red:
 	./virtualSocket ../tmp/p5 ../tmp/p6 &
 	./virtualSocket ../tmp/p7 ../tmp/p8 &
 	./virtualSocket ../tmp/p9 ../tmp/p10 &
-run_nodo_A_B:
+run_nodo_A:
 	./nodo A.A.A.A ../tmp/p1 ../tmp/p2
-run_nodo_B_C:
-	./nodo A.A.A.A ../tmp/p3 ../tmp/p4
-run_nodo_C_D:
-	./nodo A.A.A.A ../tmp/p5 ../tmp/p6
-run_nodo_D_E:
-	./nodo A.A.A.A ../tmp/p7 ../tmp/p8
-run_nodo_E_A:
-	./nodo A.A.A.A ../tmp/p9 ../tmp/p10
+run_nodo_B:
+	./nodo B.B.B.B ../tmp/p3 ../tmp/p4
+run_nodo_C:
+	./nodo C.C.C.C ../tmp/p5 ../tmp/p6
+run_nodo_D:
+	./nodo D.D.D.D ../tmp/p7 ../tmp/p8
+run_nodo_E:
+	./nodo E.E.E.E ../tmp/p9 ../tmp/p10
 clean:
 	rm *.o
