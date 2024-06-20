@@ -12,10 +12,11 @@ const char* ip_C = "C.C.C.C";
 const char* ip_D = "D.D.D.D";
 const char* ip_E = "E.E.E.E";
 const char* ip_broadcast = "F.F.F.F";
+int opcion;
 
 int main(int nargs, char* arg_arr[]){
     if(nargs == 4){
-        int opcion;
+        
         struct IP paquete;
         char msg[MAX_DATA_SIZE];
 
@@ -25,7 +26,7 @@ int main(int nargs, char* arg_arr[]){
         
         FILE *vport_rx = fopen(puerto_rx, "r");
         FILE *vport_tx = fopen(puerto_tx, "w");
-
+        
         if(strcmp(ip_nodo, ip_A) == 0){
             convertir_ip(ip_A, paquete.ip_origen);
             imprimir_ip(paquete.ip_origen);
@@ -33,7 +34,11 @@ int main(int nargs, char* arg_arr[]){
             printf("A quien desea enviar el mensaje?\n");
             printf("1. B\n2. C\n3. D\n4. E\n5. A todos (broadcast)\n");
             printf("Ingrese una opcion: ");
-            scanf("%i", &opcion);
+            if (scanf("%d", &opcion) != 1) {
+                printf("Error al leer la opción.\n");
+                return 1;
+            }
+            getchar();
             switch(opcion){
                 case 1:
                     convertir_ip(ip_B, paquete.ip_destino);
