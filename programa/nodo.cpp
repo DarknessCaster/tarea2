@@ -1,14 +1,19 @@
 #include <stdio.h>
 #include "serial.h"
 #include "slip.h"
+#include "ip.h"
 
-int opcion = 0;
+#define MAX_DATA_SIZE 1500
 
 int main(int nargs, char* arg_arr[]){
     if(nargs == 4){
+        int opcion = 0;
+        struct IP paquete;
+        char msg[MAX_DATA_SIZE];
         const char* ip_nodo = arg_arr[1];
         const char* puerto_tx = arg_arr[2];
         const char* puerto_rx = arg_arr[3];
+        printf("Ingrese el mensaje a enviar ");
         do {
             printf("\n================== MENU ==================\n");
             printf("1. Enviar mensaje de prueba\n");
