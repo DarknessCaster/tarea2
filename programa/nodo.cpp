@@ -3,7 +3,7 @@
 int opcion = 0;
 
 int main(int nargs, char* arg_arr[]){
-    if(nargs == 3){
+    if(nargs == 4){
         do {
             printf("\n================== MENU ==================\n");
             printf("1. Enviar mensaje de prueba\n");
@@ -25,6 +25,8 @@ int main(int nargs, char* arg_arr[]){
                     break;
             }
         } while (opcion != 7);
+    } else{
+        printf("");
     }
     return 0;
     }
