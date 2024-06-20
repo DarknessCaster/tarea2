@@ -21,7 +21,7 @@ int main(int nargs, char* arg_arr[]){
         char* puerto_tx = arg_arr[2];
         char* puerto_rx = arg_arr[3];
 
-        printf("IP del nodo: %s", ip_nodo);
+        printf("IP del nodo: %s\n", ip_nodo);
         
         FILE *rx_stream = fopen(puerto_rx, "r");
         FILE *tx_stream = fopen(puerto_tx, "w");
@@ -42,7 +42,7 @@ int main(int nargs, char* arg_arr[]){
             printf("Nodo E iniciado correctamente\n");
         }
     } else{
-        printf("Utilizar: ");
+        printf("Utilizar:\n");
     }
     return 0;
 }
