@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include "serial.h"
+#include "slip.h"
 
 int opcion = 0;
 
