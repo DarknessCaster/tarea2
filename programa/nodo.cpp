@@ -17,9 +17,9 @@ int main(int nargs, char* arg_arr[]){
         struct IP paquete;
         char msg[MAX_DATA_SIZE];
 
-        const char* ip_nodo = arg_arr[1];
-        const char* puerto_tx = arg_arr[2];
-        const char* puerto_rx = arg_arr[3];
+        char* ip_nodo = arg_arr[1];
+        char* puerto_tx = arg_arr[2];
+        char* puerto_rx = arg_arr[3];
         printf("IP del nodo: %s", arg_arr[1]);
         FILE *rx_stream = fopen(puerto_rx, "r");
         FILE *tx_stream = fopen(puerto_tx, "w");
