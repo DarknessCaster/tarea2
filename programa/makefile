@@ -5,6 +5,8 @@ all:
 	g++ -Wall nodo.cpp -c
 	g++ -Wall slip.o serial.o chat.o -o chat
 	g++ -Wall slip.o serial.o nodo.o -o nodo
+nodo:
+	g++ -Wall slip.o serial.o nodo.o -o nodo
 mk_socket:
 	g++ -Wall virtualSocket.cpp -o virtualSocket
 run_socket_1_2:
