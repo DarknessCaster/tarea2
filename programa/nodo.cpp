@@ -6,10 +6,10 @@
 
 #define MAX_DATA_SIZE 1500
 const char* ip_A = "A.A.A.A";
-const char* ip_B = "A.A.A.A";
-const char* ip_C = "A.A.A.A";
-const char* ip_D = "A.A.A.A";
-const char* ip_E = "A.A.A.A";
+const char* ip_B = "B.B.B.B";
+const char* ip_C = "C.C.C.C";
+const char* ip_D = "D.D.D.D";
+const char* ip_E = "E.E.E.E";
 
 int main(int nargs, char* arg_arr[]){
     if(nargs == 4){
@@ -24,11 +24,10 @@ int main(int nargs, char* arg_arr[]){
         FILE *rx_stream = fopen(puerto_rx, "r");
         FILE *tx_stream = fopen(puerto_tx, "w");
 
-        if(strcmp(ip_nodo, "A.A.A.A") == 0){
+        if(strcmp(ip_nodo, ip_A) == 0){
             printf("Nodo A iniciado correctamente\n");
             printf("========= MENU =========");
         }
-        printf("Ingrese el mensaje a enviar ");
         do {
             printf("\n================== MENU ==================\n");
             printf("1. Enviar mensaje de prueba\n");
