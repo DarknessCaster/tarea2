@@ -20,8 +20,6 @@ int main(int nargs, char* arg_arr[]){
         char* ip_nodo = arg_arr[1];
         char* puerto_tx = arg_arr[2];
         char* puerto_rx = arg_arr[3];
-
-        printf("IP del nodo: %s\n", ip_nodo);
         
         FILE *vport_rx = fopen(puerto_rx, "r");
         FILE *vport_tx = fopen(puerto_tx, "w");

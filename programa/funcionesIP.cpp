@@ -2,6 +2,6 @@
 #include "ip.h"
 #include "funcionesIP.h"
 
-void encapsularIP(){
+void encapsularIP(IP){
 
 }
