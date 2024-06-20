@@ -28,7 +28,7 @@ int main(int nargs, char* arg_arr[]){
             }
         } while (opcion != 7);
     } else{
-        printf("");
+        printf("Utilizar: ");
     }
     return 0;
     }
