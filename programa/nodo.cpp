@@ -60,6 +60,7 @@ int main(int nargs, char* arg_arr[]){
             printf("1. A\n2. B\n3. C\n4. D\n5. A todos (broadcast)\n");
             printf("Ingrese una opcion: ");
             scanf("%d", &opcion);
+            
         }
     } else{
         printf("Utilizar:\n");
