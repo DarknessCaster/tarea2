@@ -28,6 +28,7 @@ int main(int nargs, char* arg_arr[]){
         printf("Ingrese opcion: \n");
         scanf(" %c", &opcion);
         printf("%c", opcion);
+        getchar();
         if(strcmp(ip_nodo, ip_A) == 0){
             convertir_ip(ip_A, paquete.ip_origen);
             imprimir_ip(paquete.ip_origen);
