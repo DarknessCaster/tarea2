@@ -18,7 +18,7 @@ int main(int nargs, char* arg_arr[]){
         int opcion = 0;
         struct IP paquete;
         char msg[MAX_DATA_SIZE];
-        int contador = 0;
+        int contador_id = 0;
 
         // Obtener ip del nodo y puertos tx, rx
         char* ip_nodo = arg_arr[1]; 
@@ -54,10 +54,13 @@ int main(int nargs, char* arg_arr[]){
                     printf("TTL: %d\n", paquete.TTL);
                     printf("Ingrese mensaje a enviar: ");
                     fgets((char*)paquete.datos, MAX_DATA_SIZE, stdin);
-                    paquete.lng_datos = strlen((const char*)paquete.datos);
-                    printf("Longitud de datos: %d\n", (int*)paquete.lng_datos);
-                    paquete.id = contador;
+                    size_t len = strlen((const char*)paquete.datos);
+                    paquete.lng_datos[0] = (BYTE)(len >> 8); // Byte alto
+                    paquete.lng_datos[1] = (BYTE)(len & 0xFF); // Byte bajo
+                    printf("Longitud de datos: %zu\n", paquete.lng_datos);
+                    paquete.id = contador_id;
                     printf("ID: %d\n", paquete.id);
+                    contador_id++;
                     break;
                 case 2: // NODO C
                     convertir_ip(ip_C, paquete.ip_destino);
