@@ -67,7 +67,7 @@ int main(int nargs, char* arg_arr[]){
             printf("A quien desea enviar el mensaje?\n");
             printf("1. A\n2. C\n3. D\n4. E\n5. A todos (broadcast)\n");
             printf("Ingrese una opcion: ");
-            scanf("%c", &opcion);
+            sscanf("%c", opcion);
             if(opcion == '1'){
                 convertir_ip(ip_A, paquete.ip_destino);
                 imprimir_ip(paquete.ip_destino);
@@ -99,7 +99,7 @@ int main(int nargs, char* arg_arr[]){
             
         }
         fclose(vport_tx);
-        fclose(vport_tx);
+        fclose(vport_rx);
     } else{
         printf("Utilizar:\n");
     }
