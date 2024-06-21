@@ -35,28 +35,28 @@ int main(int nargs, char* arg_arr[]){
             printf("1. B\n2. C\n3. D\n4. E\n5. A todos (broadcast)\n");
             printf("Ingrese una opcion: ");
 
-            scanf("%c", &opcion_1);
+            scanf(" %c", &opcion_1);
             printf("%c", opcion_1);
-            switch (opcion_1) {
-                case '1':
-                    convertir_ip(ip_B, paquete.ip_destino);
-                    imprimir_ip(paquete.ip_destino);
-                    break;
-                case 2:
-                    //paquete.ip_destino = ip_C;
-                    break;
-                case 3:
-                    //paquete.ip_destino = ip_D;
-                    break;
-                case 4:
-                    //paquete.ip_destino = ip_E;
-                    break;
-                case 5:
-                    //paquete.ip_destino = ip_broadcast;
-                    break;
-                default:
-                    return 1;
-            }
+            // switch (opcion_1) {
+            //     case '1':
+            //         convertir_ip(ip_B, paquete.ip_destino);
+            //         imprimir_ip(paquete.ip_destino);
+            //         break;
+            //     case 2:
+            //         //paquete.ip_destino = ip_C;
+            //         break;
+            //     case 3:
+            //         //paquete.ip_destino = ip_D;
+            //         break;
+            //     case 4:
+            //         //paquete.ip_destino = ip_E;
+            //         break;
+            //     case 5:
+            //         //paquete.ip_destino = ip_broadcast;
+            //         break;
+            //     default:
+            //         return 1;
+            // }
         }
         else if(strcmp(ip_nodo, ip_B) == 0){
             convertir_ip(ip_B, paquete.ip_origen);
