@@ -38,7 +38,7 @@ int main(int nargs, char* arg_arr[]){
             switch (opcion) {
                 case 1:
                     memcpy(paquete.ip_origen, ipprueba, sizeof(ipprueba));
-                    imprimir_ip(paquete.ip_destino);
+                    imprimir_ip(paquete.ip_origen);
 
                     break;
                 case 2:
