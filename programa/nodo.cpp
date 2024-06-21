@@ -44,12 +44,13 @@ int main(int nargs, char* arg_arr[]){
             switch (opcion) {
                 case 1: // NODO B
                     encapsularIP(paquete, 1, contador_id, ip_nodo, ip_B);
+                    printf("Ip origen: ")
+                    imprimir_ip(paquete.ip_origen);
                     printf("Ip destino: ");
                     imprimir_ip(paquete.ip_destino);
-                    imprimir_ip(paquete.ip_origen);
+                    printf("ID: %d\n", paquete.id);
                     printf("TTL: %d\n", paquete.TTL);
                     printf("Longitud de datos: %d\n", (paquete.lng_datos[0] << 8) | paquete.lng_datos[1]);
-                    printf("ID: %d\n", paquete.id);
                     contador_id++;
                     break;
                 case 2: // NODO C

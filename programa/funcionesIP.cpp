@@ -14,8 +14,9 @@ void encapsularIP(IP &paquete, BYTE TTL, int id, const char* ip_origen, const ch
     printf("Ingrese mensaje a enviar: ");
     fgets((char*)paquete.datos, MAX_DATA_SIZE, stdin); // Almacena mensaje
     
-    // almacena el largo
+    // Almacena longitud de datos
     len = strlen((const char*)paquete.datos); 
+        // Si el l
         if (len > 0 && paquete.datos[len - 1] == '\n') {
             paquete.datos[len - 1] = '\0';
             len--; // Disminuir la longitud
