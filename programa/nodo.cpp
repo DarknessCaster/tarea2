@@ -37,7 +37,7 @@ int main(int nargs, char* arg_arr[]){
             printf("1. B\n2. C\n3. D\n4. E\n5. A todos (broadcast)\n");
             printf("Ingrese una opcion: ");
 
-            scanf(" %c", &opcion);
+            fgets(&opcion, sizeof(opcion), stdin);
             printf("%c", opcion);
             // switch (opcion_1) {
             //     case '1':
