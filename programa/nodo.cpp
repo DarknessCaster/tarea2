@@ -54,8 +54,8 @@ int main(int nargs, char* arg_arr[]){
                     printf("TTL: %d\n", paquete.TTL);
                     printf("Ingrese mensaje a enviar: ");
                     fgets((char*)paquete.datos, MAX_DATA_SIZE, stdin);
-                    paquete.lng_datos = strlen(paquete.datos);
-                    printf("Longitud de datos: %d\n", paquete.lng_datos);
+                    paquete.lng_datos = strlen((const char*)paquete.datos);
+                    printf("Longitud de datos: %d\n", (int*)paquete.lng_datos);
                     paquete.id = contador;
                     printf("ID: %d\n", paquete.id);
                     break;
