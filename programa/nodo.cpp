@@ -25,7 +25,7 @@ int main(int nargs, char* arg_arr[]){
 
         FILE *vport_rx = fopen(puerto_rx, "r");
         FILE *vport_tx = fopen(puerto_tx, "w");
-        BYTE ipprueba[4] = 0x65656565;
+        BYTE ipprueba[4] = {0x65, 0x65, 0x65, 0x65};
         printf("%c.%c.%c.%c", ipprueba);
         if(strcmp(ip_nodo, ip_A) == 0){
             convertir_ip(ip_A, paquete.ip_origen);
