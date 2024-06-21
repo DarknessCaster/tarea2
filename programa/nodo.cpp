@@ -53,10 +53,11 @@ int main(int nargs, char* arg_arr[]){
                     paquete.TTL = 1; // se guarda TTL
                     printf("TTL: %d\n", paquete.TTL);
                     printf("Ingrese mensaje a enviar: ");
-                    fgets((char*)paquete.datos, MAX_DATA_SIZE, stdin); // se guarda mensaje o datos
-                    
+                    //fgets((char*)paquete.datos, MAX_DATA_SIZE, stdin); // se guarda mensaje o datos
+                    scanf(" %[^\n]s", paquete.datos);
                     // se guarda longitud de datos
                     len = strlen((const char*)paquete.datos);
+                    printf("largo antes de if: %zu", len);
                         // Verifica si el último carácter es un '\n' y elimínalo
                     if (len > 0 && paquete.datos[len - 1] == '\n') {
                         paquete.datos[len - 1] = '\0';
