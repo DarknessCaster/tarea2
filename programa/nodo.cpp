@@ -37,7 +37,7 @@ int main(int nargs, char* arg_arr[]){
             scanf("%d", &opcion);
             switch (opcion) {
                 case 1:
-                    convertir_ip(ip_B, paquete.ip_destino);
+                    strcpy(paquete.ip_origen, ipprueba);
                     imprimir_ip(paquete.ip_destino);
 
                     break;
