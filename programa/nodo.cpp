@@ -25,7 +25,10 @@ int main(int nargs, char* arg_arr[]){
 
         FILE *vport_rx = fopen(puerto_rx, "r");
         FILE *vport_tx = fopen(puerto_tx, "w");
+
+        // Otra forma de implementar ips.
         BYTE ipprueba[4] = {0x42, 0x42, 0x42, 0x42};
+        printf("%c hexa: %x", ip_nodo[0], ip_nodo[0]);
         imprimir_ip(ipprueba);
         if(strcmp(ip_nodo, ip_A) == 0){
             convertir_ip(ip_A, paquete.ip_origen);
