@@ -15,7 +15,7 @@ const char* ip_broadcast = "F.F.F.F";
 
 int main(int nargs, char* arg_arr[]){
     if(nargs == 4){
-        int opcion;
+        int opcion = 0;
         struct IP paquete;
         char msg[MAX_DATA_SIZE];
 
@@ -23,11 +23,11 @@ int main(int nargs, char* arg_arr[]){
         char* puerto_tx = arg_arr[2];
         char* puerto_rx = arg_arr[3];
 
-        FILE *vport_rx = fopen(puerto_rx, "r");
-        FILE *vport_tx = fopen(puerto_tx, "w");
+        // FILE *vport_rx = fopen(puerto_rx, "r");
+        // FILE *vport_tx = fopen(puerto_tx, "w");
         printf("Ingrese opcion: \n");
-        fgets(&opcion, sizeof(opcion), stdin);
-        printf("%c", opcion);
+        scanf("%d", &opcion);
+        printf("%d", opcion);
         getchar();
         if(strcmp(ip_nodo, ip_A) == 0){
             convertir_ip(ip_A, paquete.ip_origen);
@@ -37,10 +37,10 @@ int main(int nargs, char* arg_arr[]){
             printf("1. B\n2. C\n3. D\n4. E\n5. A todos (broadcast)\n");
             printf("Ingrese una opcion: ");
 
-            fgets(&opcion, sizeof(opcion), stdin);
+            scanf("%d", &opcion);
             printf("%d", opcion);
-            switch (opcion_1) {
-                case '1':
+            switch (opcion) {
+                case 1:
                     convertir_ip(ip_B, paquete.ip_destino);
                     imprimir_ip(paquete.ip_destino);
                     break;
@@ -67,8 +67,8 @@ int main(int nargs, char* arg_arr[]){
             printf("A quien desea enviar el mensaje?\n");
             printf("1. A\n2. C\n3. D\n4. E\n5. A todos (broadcast)\n");
             printf("Ingrese una opcion: ");
-            opcion = getchar();
-            if(opcion == '1'){
+            scanf("%d", &opcion);
+            if(opcion == 1){
                 convertir_ip(ip_A, paquete.ip_destino);
                 imprimir_ip(paquete.ip_destino);
             }
@@ -81,25 +81,25 @@ int main(int nargs, char* arg_arr[]){
             printf("A quien desea enviar el mensaje?\n");
             printf("1. A\n2. B\n3. D\n4. E\n5. A todos (broadcast)\n");
             printf("Ingrese una opcion: ");
-            scanf("%c", &opcion);
+            scanf("%d", &opcion);
         }
         else if(strcmp(ip_nodo, ip_D) == 0){
             printf("\nNodo D iniciado correctamente\n");
             printf("A quien desea enviar el mensaje?\n");
             printf("1. A\n2. B\n3. C\n4. E\n5. A todos (broadcast)\n");
             printf("Ingrese una opcion: ");
-            scanf("%c", &opcion);
+            scanf("%d", &opcion);
         }
         else if(strcmp(ip_nodo, ip_E) == 0){
             printf("\nNodo E iniciado correctamente\n");
             printf("A quien desea enviar el mensaje?\n");
             printf("1. A\n2. B\n3. C\n4. D\n5. A todos (broadcast)\n");
             printf("Ingrese una opcion: ");
-            scanf("%c", &opcion);
+            scanf("%d", &opcion);
 
         }
-        fclose(vport_tx);
-        fclose(vport_rx);
+        // fclose(vport_tx);
+        // fclose(vport_rx);
     } else{
         printf("Utilizar:\n");
     }
