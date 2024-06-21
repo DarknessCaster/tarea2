@@ -31,14 +31,10 @@ int main(int nargs, char* arg_arr[]){
 
         // Otra forma de implementar ips.
         BYTE ipprueba[4] = {0x42, 0x42, 0x42, 0x42};
-        printf("%c hexa: %x", ip_nodo[0], ip_nodo[0]);
-        printf("Ip prueba, ");
+        printf("%c hexa: %x\n", ip_nodo[0], ip_nodo[0]);
         imprimir_ip(ipprueba);
 
         if(strcmp(ip_nodo, ip_A) == 0){
-            convertir_ip(ip_A, paquete.ip_origen); // se guarda ip de origen
-            imprimir_ip(paquete.ip_origen);
-            printf("%x\n", paquete.ip_origen[0]);
             printf("Nodo A iniciado correctamente\n");
             printf("A quien desea enviar el mensaje?\n");
             printf("1. B\n2. C\n3. D\n4. E\n5. A todos (broadcast)\n");
@@ -47,20 +43,12 @@ int main(int nargs, char* arg_arr[]){
             getchar();
             switch (opcion) {
                 case 1: // NODO B
-                    convertir_ip(ip_B, paquete.ip_destino); // se guarda ip de destino
+                    encapsularIP(paquete, 1, contador_id, ip_nodo, ip_B);
                     printf("Ip destino: ");
                     imprimir_ip(paquete.ip_destino);
-                    paquete.TTL = 1; // se guarda TTL
+                    imprimir_ip(paquete.ip_origen);
                     printf("TTL: %d\n", paquete.TTL);
-                    printf("Ingrese mensaje a enviar: ");
-                    // Leer la entrada usando fgets con límite de tamaño
-                    fgets((char*)paquete.datos, MAX_DATA_SIZE, stdin);
-                    
-                    // Eliminar el carácter de nueva línea si está presente
-                    encapsularIP(paquete);
                     printf("Longitud de datos: %d\n", (paquete.lng_datos[0] << 8) | paquete.lng_datos[1]);
-
-                    paquete.id = contador_id; // se guarda identificacion de paquete
                     printf("ID: %d\n", paquete.id);
                     contador_id++;
                     break;
