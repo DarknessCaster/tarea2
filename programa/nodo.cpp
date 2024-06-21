@@ -72,7 +72,9 @@ int main(int nargs, char* arg_arr[]){
                 convertir_ip(ip_A, paquete.ip_destino);
                 imprimir_ip(paquete.ip_destino);
             }
-            else if(opcion == '2')
+            else if(opcion == '2'){
+                
+            }
         }
         else if(strcmp(ip_nodo, ip_C) == 0){
             printf("\nNodo C iniciado correctamente\n");
