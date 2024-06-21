@@ -34,7 +34,7 @@ int main(int nargs, char* arg_arr[]){
             printf("A quien desea enviar el mensaje?\n");
             printf("1. B\n2. C\n3. D\n4. E\n5. A todos (broadcast)\n");
             printf("Ingrese una opcion: ");
-            if (scanf("%c", &opcion) != 1) {
+            if (scanf("%c", &opcion) != '1') {
                 printf("Error al leer la opción.\n");
                 return 1;
             }
