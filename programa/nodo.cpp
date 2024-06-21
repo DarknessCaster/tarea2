@@ -25,10 +25,7 @@ int main(int nargs, char* arg_arr[]){
 
         FILE *vport_rx = fopen(puerto_rx, "r");
         FILE *vport_tx = fopen(puerto_tx, "w");
-        printf("Ingrese opcion: \n");
-        scanf("%d", &opcion);
-        printf("%d", opcion);
-        getchar();
+
         if(strcmp(ip_nodo, ip_A) == 0){
             convertir_ip(ip_A, paquete.ip_origen);
             imprimir_ip(paquete.ip_origen);
