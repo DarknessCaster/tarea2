@@ -53,15 +53,14 @@ int main(int nargs, char* arg_arr[]){
                     paquete.TTL = 1; // se guarda TTL
                     printf("TTL: %d\n", paquete.TTL);
                     printf("Ingrese mensaje a enviar: ");
-                    //fgets((char*)paquete.datos, MAX_DATA_SIZE, stdin); // se guarda mensaje o datos
-                    scanf(" %1500[^\n]", paquete.datos);
-                    // se guarda longitud de datos
+                    // Leer la entrada usando fgets con límite de tamaño
+                    fgets((char*)paquete.datos, MAX_DATA_SIZE, stdin);
+                    
+                    // Eliminar el carácter de nueva línea si está presente
                     len = strlen((const char*)paquete.datos);
-                    printf("largo antes de if: %zu", len);
-                        // Verifica si el último carácter es un '\n' y elimínalo
                     if (len > 0 && paquete.datos[len - 1] == '\n') {
                         paquete.datos[len - 1] = '\0';
-                        len--; // Disminuye la longitud
+                        len--; // Disminuir la longitud
                     }
                     paquete.lng_datos[0] = (BYTE)(len >> 8); // Byte alto
                     paquete.lng_datos[1] = (BYTE)(len & 0xFF); // Byte bajo
