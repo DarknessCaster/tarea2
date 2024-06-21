@@ -1,9 +1,9 @@
 #include <stdio.h>
+#include <string.h>
 #include "serial.h"
 #include "slip.h"
 #include "ip.h"
 #include "funcionesIP.h"
-#include <string.h>
 
 #define MAX_DATA_SIZE 1500
 const char* ip_A = "A.A.A.A";
@@ -15,7 +15,7 @@ const char* ip_broadcast = "F.F.F.F";
 
 int main(int nargs, char* arg_arr[]){
     if(nargs == 4){
-        char opcion;
+        int opcion;
         struct IP paquete;
         char msg[MAX_DATA_SIZE];
 
@@ -38,7 +38,7 @@ int main(int nargs, char* arg_arr[]){
             printf("Ingrese una opcion: ");
 
             fgets(&opcion, sizeof(opcion), stdin);
-            printf("%c", opcion);
+            printf("%d", opcion);
             switch (opcion_1) {
                 case '1':
                     convertir_ip(ip_B, paquete.ip_destino);
