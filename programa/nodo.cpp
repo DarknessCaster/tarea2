@@ -56,7 +56,7 @@ int main(int nargs, char* arg_arr[]){
                     fgets((char*)paquete.datos, MAX_DATA_SIZE, stdin); // se guarda mensaje o datos
                     
                     // se guarda longitud de datos
-                    encapsularIP(paquete, len);                   
+                    encapsularIP(paquete);                   
                     printf("Longitud de datos: %d\n", (paquete.lng_datos[0] << 8) | paquete.lng_datos[1]);
 
                     paquete.id = contador_id; // se guarda identificacion de paquete

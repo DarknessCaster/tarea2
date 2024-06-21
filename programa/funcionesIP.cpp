@@ -3,7 +3,8 @@
 #include "ip.h"
 #include "funcionesIP.h"
 
-void encapsularIP(IP &paquete, size_t len){
+void encapsularIP(IP &paquete){
+    size_t len;
     len = strlen((const char*)paquete.datos);
     paquete.datos[len-1] = (BYTE)'\0'; // Arreglo para elimminar \n al final de datos
     paquete.lng_datos[0] = (BYTE)(len >> 8); // Byte alto
