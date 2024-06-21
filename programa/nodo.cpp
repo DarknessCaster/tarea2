@@ -54,7 +54,7 @@ int main(int nargs, char* arg_arr[]){
                     printf("TTL: %d\n", paquete.TTL);
                     printf("Ingrese mensaje a enviar: ");
                     //fgets((char*)paquete.datos, MAX_DATA_SIZE, stdin); // se guarda mensaje o datos
-                    scanf(" %[^\n]s", paquete.datos);
+                    scanf(" %1500[^\n]", paquete.datos);
                     // se guarda longitud de datos
                     len = strlen((const char*)paquete.datos);
                     printf("largo antes de if: %zu", len);
