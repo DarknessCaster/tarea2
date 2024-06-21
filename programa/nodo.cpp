@@ -57,13 +57,7 @@ int main(int nargs, char* arg_arr[]){
                     fgets((char*)paquete.datos, MAX_DATA_SIZE, stdin);
                     
                     // Eliminar el carácter de nueva línea si está presente
-                    len = strlen((const char*)paquete.datos);
-                    if (len > 0 && paquete.datos[len - 1] == '\n') {
-                        paquete.datos[len - 1] = '\0';
-                        len--; // Disminuir la longitud
-                    }
-                    paquete.lng_datos[0] = (BYTE)(len >> 8); // Byte alto
-                    paquete.lng_datos[1] = (BYTE)(len & 0xFF); // Byte bajo
+                    encapsularIP(paquete);
                     printf("Longitud de datos: %d\n", (paquete.lng_datos[0] << 8) | paquete.lng_datos[1]);
 
                     paquete.id = contador_id; // se guarda identificacion de paquete

@@ -5,7 +5,13 @@
 
 void encapsularIP(IP &paquete){
     size_t len;
-    
+    len = strlen((const char*)paquete.datos);
+        if (len > 0 && paquete.datos[len - 1] == '\n') {
+            paquete.datos[len - 1] = '\0';
+            len--; // Disminuir la longitud
+        }
+        paquete.lng_datos[0] = (BYTE)(len >> 8); // Byte alto
+        paquete.lng_datos[1] = (BYTE)(len & 0xFF); // Byte bajo
 }
 
 void convertir_ip(const char* ip_str, BYTE ip[4]) {
