@@ -57,7 +57,7 @@ int main(int nargs, char* arg_arr[]){
                     size_t len = strlen((const char*)paquete.datos);
                     paquete.lng_datos[0] = (BYTE)(len >> 8); // Byte alto
                     paquete.lng_datos[1] = (BYTE)(len & 0xFF); // Byte bajo
-                    printf("Longitud de datos: %zu\n", paquete.lng_datos);
+                    printf("Longitud de datos: %d\n", paquete.lng_datos);
                     paquete.id = contador_id;
                     printf("ID: %d\n", paquete.id);
                     contador_id++;
