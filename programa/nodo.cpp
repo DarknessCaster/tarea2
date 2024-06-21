@@ -18,18 +18,23 @@ int main(int nargs, char* arg_arr[]){
         int opcion = 0;
         struct IP paquete;
         char msg[MAX_DATA_SIZE];
+        int contador = 0;
 
-        char* ip_nodo = arg_arr[1];
+        // Obtener ip del nodo y puertos tx, rx
+        char* ip_nodo = arg_arr[1]; 
         char* puerto_tx = arg_arr[2];
         char* puerto_rx = arg_arr[3];
 
+        // 
         FILE *vport_rx = fopen(puerto_rx, "r");
         FILE *vport_tx = fopen(puerto_tx, "w");
 
         // Otra forma de implementar ips.
         BYTE ipprueba[4] = {0x42, 0x42, 0x42, 0x42};
         printf("%c hexa: %x", ip_nodo[0], ip_nodo[0]);
+        printf("Ip prueba, ");
         imprimir_ip(ipprueba);
+
         if(strcmp(ip_nodo, ip_A) == 0){
             convertir_ip(ip_A, paquete.ip_origen);
             imprimir_ip(paquete.ip_origen);
@@ -39,22 +44,31 @@ int main(int nargs, char* arg_arr[]){
             printf("1. B\n2. C\n3. D\n4. E\n5. A todos (broadcast)\n");
             printf("Ingrese una opcion: ");
             scanf("%d", &opcion);
+            getchar();
             switch (opcion) {
-                case 1:
-                    memcpy(paquete.ip_destino, ipprueba, sizeof(ipprueba));
+                case 1: // NODO B
+                    convertir_ip(ip_B, paquete.ip_destino)
+                    printf("Ip destino: ");
                     imprimir_ip(paquete.ip_destino);
-
+                    paquete.TTL = 1;
+                    printf("TTL: %d\n", paquete.TTL);
+                    printf("Ingrese mensaje a enviar: ");
+                    fgets(paquete.datos, MAX_DATA_SIZE, stdin);
+                    paquete.lng_datos = strlen(paquete.datos);
+                    printf("Longitud de datos: %d\n", paquete.lng_datos);
+                    paquete.id = contador;
+                    printf("ID: %d\n", paquete.id);
                     break;
-                case 2:
+                case 2: // NODO C
                     convertir_ip(ip_C, paquete.ip_destino);
                     break;
-                case 3:
+                case 3: // NODO D
                     convertir_ip(ip_D, paquete.ip_destino);
                     break;
-                case 4:
+                case 4: // NODO E
                     convertir_ip(ip_E, paquete.ip_destino);
                     break;
-                case 5:
+                case 5: // BROADCAST
                     convertir_ip(ip_broadcast, paquete.ip_destino);
                     break;
                 default:
