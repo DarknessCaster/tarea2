@@ -61,11 +61,18 @@ int main(int nargs, char* arg_arr[]){
             }
         }
         else if(strcmp(ip_nodo, ip_B) == 0){
+            convertir_ip(ip_B, paquete.ip_origen);
+            imprimir_ip(paquete.ip_origen);
             printf("\nNodo B iniciado correctamente\n");
             printf("A quien desea enviar el mensaje?\n");
             printf("1. A\n2. C\n3. D\n4. E\n5. A todos (broadcast)\n");
             printf("Ingrese una opcion: ");
             scanf("%c", &opcion);
+            if(opcion == '1'){
+                convertir_ip(ip_A, paquete.ip_destino);
+                imprimir_ip(paquete.ip_destino);
+            }
+            else if(opcion == '2')
         }
         else if(strcmp(ip_nodo, ip_C) == 0){
             printf("\nNodo C iniciado correctamente\n");
@@ -89,6 +96,8 @@ int main(int nargs, char* arg_arr[]){
             scanf("%c", &opcion);
             
         }
+        fclose(puerto_tx);
+        fclose(puerto_rx);
     } else{
         printf("Utilizar:\n");
     }
