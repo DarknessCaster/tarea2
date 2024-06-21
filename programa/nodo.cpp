@@ -36,6 +36,7 @@ int main(int nargs, char* arg_arr[]){
             printf("Ingrese una opcion: ");
 
             scanf("%c", &opcion_1);
+            printf("%c", opcion_1);
             switch (opcion_1) {
                 case '1':
                     convertir_ip(ip_B, paquete.ip_destino);
