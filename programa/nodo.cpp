@@ -26,7 +26,7 @@ int main(int nargs, char* arg_arr[]){
         FILE *vport_rx = fopen(puerto_rx, "r");
         FILE *vport_tx = fopen(puerto_tx, "w");
         printf("Ingrese opcion: \n");
-        scanf(" %c", &opcion);
+        fgets(opcion, sizeof(opcion), stdin);
         printf("%c", opcion);
         getchar();
         if(strcmp(ip_nodo, ip_A) == 0){
