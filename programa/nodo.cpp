@@ -22,7 +22,7 @@ int main(int nargs, char* arg_arr[]){
         char* ip_nodo = arg_arr[1];
         char* puerto_tx = arg_arr[2];
         char* puerto_rx = arg_arr[3];
-        
+
         FILE *vport_rx = fopen(puerto_rx, "r");
         FILE *vport_tx = fopen(puerto_tx, "w");
         printf("Ingrese opcion: \n");
@@ -39,26 +39,26 @@ int main(int nargs, char* arg_arr[]){
 
             fgets(&opcion, sizeof(opcion), stdin);
             printf("%c", opcion);
-            // switch (opcion_1) {
-            //     case '1':
-            //         convertir_ip(ip_B, paquete.ip_destino);
-            //         imprimir_ip(paquete.ip_destino);
-            //         break;
-            //     case 2:
-            //         //paquete.ip_destino = ip_C;
-            //         break;
-            //     case 3:
-            //         //paquete.ip_destino = ip_D;
-            //         break;
-            //     case 4:
-            //         //paquete.ip_destino = ip_E;
-            //         break;
-            //     case 5:
-            //         //paquete.ip_destino = ip_broadcast;
-            //         break;
-            //     default:
-            //         return 1;
-            // }
+            switch (opcion_1) {
+                case '1':
+                    convertir_ip(ip_B, paquete.ip_destino);
+                    imprimir_ip(paquete.ip_destino);
+                    break;
+                case 2:
+                    //paquete.ip_destino = ip_C;
+                    break;
+                case 3:
+                    //paquete.ip_destino = ip_D;
+                    break;
+                case 4:
+                    //paquete.ip_destino = ip_E;
+                    break;
+                case 5:
+                    //paquete.ip_destino = ip_broadcast;
+                    break;
+                default:
+                    return 1;
+            }
         }
         else if(strcmp(ip_nodo, ip_B) == 0){
             convertir_ip(ip_B, paquete.ip_origen);
@@ -96,7 +96,7 @@ int main(int nargs, char* arg_arr[]){
             printf("1. A\n2. B\n3. C\n4. D\n5. A todos (broadcast)\n");
             printf("Ingrese una opcion: ");
             scanf("%c", &opcion);
-            
+
         }
         fclose(vport_tx);
         fclose(vport_rx);
