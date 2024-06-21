@@ -57,8 +57,6 @@ int main(int nargs, char* arg_arr[]){
                     
                     // se guarda longitud de datos
                     len = strlen((const char*)paquete.datos);
-                    paquete.datos[len-1] = (BYTE)'\0'; // Arreglo para eliminar el caracter '\n' al final de datos
-                    len--;
                     paquete.lng_datos[0] = (BYTE)(len >> 8); // Byte alto
                     paquete.lng_datos[1] = (BYTE)(len & 0xFF); // Byte bajo
                     printf("Longitud de datos: %d\n", (paquete.lng_datos[0] << 8) | paquete.lng_datos[1]);
