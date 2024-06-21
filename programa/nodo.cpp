@@ -73,7 +73,7 @@ int main(int nargs, char* arg_arr[]){
                 imprimir_ip(paquete.ip_destino);
             }
             else if(opcion == '2'){
-                
+
             }
         }
         else if(strcmp(ip_nodo, ip_C) == 0){
@@ -98,8 +98,8 @@ int main(int nargs, char* arg_arr[]){
             scanf("%c", &opcion);
             
         }
-        fclose(puerto_tx);
-        fclose(puerto_rx);
+        fclose(vport_tx);
+        fclose(vport_tx);
     } else{
         printf("Utilizar:\n");
     }
