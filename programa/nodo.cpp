@@ -19,14 +19,15 @@ int main(int nargs, char* arg_arr[]){
         struct IP paquete; // Se inicializa paquete con protocolo IP modificado
         //char msg[MAX_DATA_SIZE];
         int contador_id = 0;
-        // Obtener ip del nodo y puertos tx, rx
+
+        // Obtener ip del nodo y sus respectivos puertos.
         char* ip_nodo = arg_arr[1]; 
         char* puerto_tx = arg_arr[2];
         char* puerto_rx = arg_arr[3];
 
         // 
-        FILE *vport_rx = fopen(puerto_rx, "r");
         FILE *vport_tx = fopen(puerto_tx, "w");
+        FILE *vport_rx = fopen(puerto_rx, "r");
 
         // Otra forma de implementar ips.
         BYTE ipprueba[4] = {0x42, 0x42, 0x42, 0x42};
@@ -53,16 +54,16 @@ int main(int nargs, char* arg_arr[]){
                     contador_id++;
                     break;
                 case 2: // NODO C
-                    convertir_ip(ip_C, paquete.ip_destino);
+                    encapsularIP(paquete, 2, contador_id, ip_nodo, ip_C);
                     break;
                 case 3: // NODO D
-                    convertir_ip(ip_D, paquete.ip_destino);
+                    encapsularIP(paquete, 3, contador_id, ip_nodo, ip_D);
                     break;
                 case 4: // NODO E
-                    convertir_ip(ip_E, paquete.ip_destino);
+                    encapsularIP(paquete, 4, contador_id, ip_nodo, ip_E);
                     break;
                 case 5: // BROADCAST
-                    convertir_ip(ip_broadcast, paquete.ip_destino);
+                    encapsularIP(paquete, 5, contador_id, ip_nodo, ip_broadcast);
                     break;
                 default:
                     return 1;
@@ -76,12 +77,32 @@ int main(int nargs, char* arg_arr[]){
             printf("1. A\n2. C\n3. D\n4. E\n5. A todos (broadcast)\n");
             printf("Ingrese una opcion: ");
             scanf("%d", &opcion);
-            if(opcion == 1){
-                convertir_ip(ip_A, paquete.ip_destino);
-                imprimir_ip(paquete.ip_destino);
-            }
-            else if(opcion == '2'){
-
+            switch (opcion) {
+                case 1: // NODO A
+                    encapsularIP(paquete, 1, contador_id, ip_nodo, ip_A);
+                    printf("Ip origen: ");
+                    imprimir_ip(paquete.ip_origen);
+                    printf("Ip destino: ");
+                    imprimir_ip(paquete.ip_destino);
+                    printf("ID: %d\n", paquete.id);
+                    printf("TTL: %d\n", paquete.TTL);
+                    printf("Longitud de datos: %d\n", (paquete.lng_datos[0] << 8) | paquete.lng_datos[1]);
+                    contador_id++;
+                    break;
+                case 2: // NODO C
+                    encapsularIP(paquete, 2, contador_id, ip_nodo, ip_C);
+                    break;
+                case 3: // NODO D
+                    encapsularIP(paquete, 3, contador_id, ip_nodo, ip_D);
+                    break;
+                case 4: // NODO E
+                    encapsularIP(paquete, 4, contador_id, ip_nodo, ip_E);
+                    break;
+                case 5: // BROADCAST
+                    encapsularIP(paquete, 5, contador_id, ip_nodo, ip_broadcast);
+                    break;
+                default:
+                    return 1;
             }
         }
         else if(strcmp(ip_nodo, ip_C) == 0){
