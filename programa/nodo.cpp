@@ -15,7 +15,7 @@ const char* ip_broadcast = "F.F.F.F";
 
 int main(int nargs, char* arg_arr[]){
     if(nargs == 4){
-        BYTE opcion;
+        char opcion;
         struct IP paquete;
         char msg[MAX_DATA_SIZE];
 
@@ -25,10 +25,10 @@ int main(int nargs, char* arg_arr[]){
         
         FILE *vport_rx = fopen(puerto_rx, "r");
         FILE *vport_tx = fopen(puerto_tx, "w");
+        printf("Ingrese opcion: \n");
         scanf(" %c", &opcion);
         printf("%c", opcion);
         if(strcmp(ip_nodo, ip_A) == 0){
-            BYTE opcion_1;
             convertir_ip(ip_A, paquete.ip_origen);
             imprimir_ip(paquete.ip_origen);
             printf("\nNodo A iniciado correctamente\n");
