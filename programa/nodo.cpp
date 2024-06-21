@@ -44,7 +44,7 @@ int main(int nargs, char* arg_arr[]){
             switch (opcion) {
                 case 1: // NODO B
                     encapsularIP(paquete, 1, contador_id, ip_nodo, ip_B);
-                    printf("Ip origen: ")
+                    printf("Ip origen: ");
                     imprimir_ip(paquete.ip_origen);
                     printf("Ip destino: ");
                     imprimir_ip(paquete.ip_destino);
