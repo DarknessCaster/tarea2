@@ -19,7 +19,7 @@ red:
 	./virtualSocket ../tmp/p7 ../tmp/p8 &
 	./virtualSocket ../tmp/p9 ../tmp/p10 &
 run_nodo_A:
-	./nodo A.A.A.A ../tmp/p1 ../tmp/p2 &
+	./nodo A.A.A.A ../tmp/p1 ../tmp/p2
 run_nodo_B:
 	./nodo B.B.B.B ../tmp/p3 ../tmp/p4 &
 run_nodo_C:
