@@ -25,7 +25,7 @@ int main(int nargs, char* arg_arr[]){
 
         FILE *vport_rx = fopen(puerto_rx, "r");
         FILE *vport_tx = fopen(puerto_tx, "w");
-        BYTE ipprueba[4] = {0x41, 0x41, 0x41, 0x41};
+        BYTE ipprueba[4] = {0x42, 0x42, 0x42, 0x42};
         imprimir_ip(ipprueba);
         if(strcmp(ip_nodo, ip_A) == 0){
             convertir_ip(ip_A, paquete.ip_origen);
@@ -37,8 +37,8 @@ int main(int nargs, char* arg_arr[]){
             scanf("%d", &opcion);
             switch (opcion) {
                 case 1:
-                    memcpy(paquete.ip_origen, ipprueba, sizeof(ipprueba));
-                    imprimir_ip(paquete.ip_origen);
+                    memcpy(paquete.ip_destino, ipprueba, sizeof(ipprueba));
+                    imprimir_ip(paquete.ip_destino);
 
                     break;
                 case 2:
