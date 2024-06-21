@@ -15,7 +15,7 @@ const char* ip_broadcast = "F.F.F.F";
 
 int main(int nargs, char* arg_arr[]){
     if(nargs == 4){
-        char opcion = '1';
+        BYTE opcion;
         struct IP paquete;
         char msg[MAX_DATA_SIZE];
 
@@ -34,8 +34,8 @@ int main(int nargs, char* arg_arr[]){
             printf("1. B\n2. C\n3. D\n4. E\n5. A todos (broadcast)\n");
             printf("Ingrese una opcion: ");
 
-            opcion = getchar();
-            switch(opcion){
+            scanf("%c", &opcion);
+            switch (opcion) {
                 case '1':
                     convertir_ip(ip_B, paquete.ip_destino);
                     imprimir_ip(paquete.ip_destino);
