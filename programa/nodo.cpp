@@ -25,33 +25,33 @@ int main(int nargs, char* arg_arr[]){
 
         FILE *vport_rx = fopen(puerto_rx, "r");
         FILE *vport_tx = fopen(puerto_tx, "w");
-
+        BYTE ipprueba[4] = 0x65656565;
+        printf("%c.%c.%c.%c", ipprueba);
         if(strcmp(ip_nodo, ip_A) == 0){
             convertir_ip(ip_A, paquete.ip_origen);
             imprimir_ip(paquete.ip_origen);
-            printf("\nNodo A iniciado correctamente\n");
+            printf("Nodo A iniciado correctamente\n");
             printf("A quien desea enviar el mensaje?\n");
             printf("1. B\n2. C\n3. D\n4. E\n5. A todos (broadcast)\n");
             printf("Ingrese una opcion: ");
-
             scanf("%d", &opcion);
-            printf("%d", opcion);
             switch (opcion) {
                 case 1:
                     convertir_ip(ip_B, paquete.ip_destino);
                     imprimir_ip(paquete.ip_destino);
+
                     break;
                 case 2:
-                    //paquete.ip_destino = ip_C;
+                    convertir_ip(ip_C, paquete.ip_destino);
                     break;
                 case 3:
-                    //paquete.ip_destino = ip_D;
+                    convertir_ip(ip_D, paquete.ip_destino);
                     break;
                 case 4:
-                    //paquete.ip_destino = ip_E;
+                    convertir_ip(ip_E, paquete.ip_destino);
                     break;
                 case 5:
-                    //paquete.ip_destino = ip_broadcast;
+                    convertir_ip(ip_broadcast, paquete.ip_destino);
                     break;
                 default:
                     return 1;
