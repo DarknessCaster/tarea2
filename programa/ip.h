@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #define BYTE unsigned char
+#define MAX_DATOS_SIZE 1500
 
 // Definimos la estructura que representa el protocolo IPv4 modificado
 struct IP {
@@ -11,9 +12,10 @@ struct IP {
     BYTE TTL;                  // 8 bits para TTL
     BYTE id;                   // 16 bits para identificación
     BYTE lng_datos[2];         // 16 bits para longitud de los datos
-    BYTE suma_verificacion[2]; // 16 bits para la suma de verificación
+    BYTE FCS[2];               // 16 bits para la suma de verificación
     BYTE ip_origen[4];         // 32 bits para la IP de origen
     BYTE ip_destino[4];        // 32 bits para la IP de destino
-    BYTE datos[1500];          // Arreglo de datos (tamaño variable, máximo 1500 bytes)
+    BYTE datos[MAX_DATOS_SIZE];          // Arreglo de datos (tamaño variable, máximo 1500 bytes)
+    BYTE FRAME[MAX_DATOS_SIZE + 17];
 };
 #endif
