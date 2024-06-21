@@ -16,10 +16,10 @@ const char* ip_broadcast = "F.F.F.F";
 int main(int nargs, char* arg_arr[]){
     if(nargs == 4){
         int opcion = 0;
-        struct IP paquete; // Se inicializa paquete con protocolo IP modificado
+        IP paquete; // Se inicializa paquete con protocolo IP modificado
         // char msg[MAX_DATA_SIZE];
         int contador_id = 0;
-        // size_t len; // Longitud de mensaje ingresado
+        size_t len; // Longitud de mensaje ingresado
         // Obtener ip del nodo y puertos tx, rx
         char* ip_nodo = arg_arr[1]; 
         char* puerto_tx = arg_arr[2];
@@ -56,7 +56,10 @@ int main(int nargs, char* arg_arr[]){
                     fgets((char*)paquete.datos, MAX_DATA_SIZE, stdin); // se guarda mensaje o datos
                     
                     // se guarda longitud de datos
-                    encapsularIP(paquete);                   
+                    len = strlen((const char*)paquete.datos);
+                    paquete.datos[len-1] = (BYTE)'\0'; // Arreglo para elimminar \n al final de datos
+                    paquete.lng_datos[0] = (BYTE)(len >> 8); // Byte alto
+                    paquete.lng_datos[1] = (BYTE)(len & 0xFF); // Byte bajo                  
                     printf("Longitud de datos: %d\n", (paquete.lng_datos[0] << 8) | paquete.lng_datos[1]);
 
                     paquete.id = contador_id; // se guarda identificacion de paquete
