@@ -25,7 +25,8 @@ int main(int nargs, char* arg_arr[]){
         
         FILE *vport_rx = fopen(puerto_rx, "r");
         FILE *vport_tx = fopen(puerto_tx, "w");
-        
+        scanf(" %c", &opcion);
+        printf("%c", opcion);
         if(strcmp(ip_nodo, ip_A) == 0){
             BYTE opcion_1;
             convertir_ip(ip_A, paquete.ip_origen);
@@ -35,8 +36,8 @@ int main(int nargs, char* arg_arr[]){
             printf("1. B\n2. C\n3. D\n4. E\n5. A todos (broadcast)\n");
             printf("Ingrese una opcion: ");
 
-            scanf(" %c", &opcion_1);
-            printf("%c", opcion_1);
+            scanf(" %c", &opcion);
+            printf("%c", opcion);
             // switch (opcion_1) {
             //     case '1':
             //         convertir_ip(ip_B, paquete.ip_destino);
