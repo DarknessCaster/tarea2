@@ -18,8 +18,8 @@ int main(int nargs, char* arg_arr[]){
         int opcion = 0;
         struct IP paquete; // Se inicializa paquete con protocolo IP modificado
         char msg[MAX_DATA_SIZE];
-        int contador_id = 0;
-        size_t len; // Longitud de mensaje ingresado
+        // int contador_id = 0;
+        // size_t len; // Longitud de mensaje ingresado
         // Obtener ip del nodo y puertos tx, rx
         char* ip_nodo = arg_arr[1]; 
         char* puerto_tx = arg_arr[2];
