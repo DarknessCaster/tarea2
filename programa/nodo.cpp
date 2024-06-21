@@ -47,13 +47,13 @@ int main(int nargs, char* arg_arr[]){
             getchar();
             switch (opcion) {
                 case 1: // NODO B
-                    convertir_ip(ip_B, paquete.ip_destino)
+                    convertir_ip(ip_B, paquete.ip_destino);
                     printf("Ip destino: ");
                     imprimir_ip(paquete.ip_destino);
                     paquete.TTL = 1;
                     printf("TTL: %d\n", paquete.TTL);
                     printf("Ingrese mensaje a enviar: ");
-                    fgets(paquete.datos, MAX_DATA_SIZE, stdin);
+                    fgets((char*)paquete.datos, MAX_DATA_SIZE, stdin);
                     paquete.lng_datos = strlen(paquete.datos);
                     printf("Longitud de datos: %d\n", paquete.lng_datos);
                     paquete.id = contador;
