@@ -15,7 +15,7 @@ const char* ip_broadcast = "F.F.F.F";
 
 int main(int nargs, char* arg_arr[]){
     if(nargs == 4){
-        char opcion;
+        char opcion = '1';
         struct IP paquete;
         char msg[MAX_DATA_SIZE];
 
