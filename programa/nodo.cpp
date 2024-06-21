@@ -12,11 +12,10 @@ const char* ip_C = "C.C.C.C";
 const char* ip_D = "D.D.D.D";
 const char* ip_E = "E.E.E.E";
 const char* ip_broadcast = "F.F.F.F";
-char opcion;
 
 int main(int nargs, char* arg_arr[]){
     if(nargs == 4){
-        
+        char opcion;
         struct IP paquete;
         char msg[MAX_DATA_SIZE];
 
