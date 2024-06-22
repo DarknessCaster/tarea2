@@ -10,7 +10,7 @@ int main(int nargs, char* arg_arr[]){
         char msg[500];
         char msg_rx[1000];
         int len = 0;
-
+        
         //Obtiene puerto virtual
         char* virtual_port = arg_arr[1];
 
