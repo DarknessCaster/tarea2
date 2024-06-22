@@ -23,7 +23,8 @@ void encapsularIP(IP &paquete, BYTE TTL, int id, const char* ip_origen, const ch
         }
     paquete.lng_datos[0] = (BYTE)(len >> 8); // Byte alto
     paquete.lng_datos[1] = (BYTE)(len & 0xFF); // Byte bajo
-    
+    paquete.FRAMES[0];
+    paquete.FRAMES[1];
 }
 
 void convertir_ip(const char* ip_str, BYTE ip[4]) {
