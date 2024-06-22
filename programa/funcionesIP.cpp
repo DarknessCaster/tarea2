@@ -71,6 +71,7 @@ bool desempaquetarIP(IP &paquete){
         return false; // FCS incorrecto
     }
     memcpy(paquete.datos, &paquete.FRAMES[indice], len);
+    return true;
 }
 
 void convertir_ip(const char* ip_str, BYTE ip[4]) {
