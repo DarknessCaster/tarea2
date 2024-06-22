@@ -16,13 +16,14 @@ void encapsularIP(IP &paquete, BYTE TTL, int id, const char* ip_origen, const ch
     
     // Almacena longitud de datos
     len = strlen((const char*)paquete.datos); 
-        // Si el l
+        // elimina el salto de linea al final si existe.
         if (len > 0 && paquete.datos[len - 1] == '\n') {
             paquete.datos[len - 1] = '\0';
             len--; // Disminuir la longitud
         }
-        paquete.lng_datos[0] = (BYTE)(len >> 8); // Byte alto
-        paquete.lng_datos[1] = (BYTE)(len & 0xFF); // Byte bajo
+    paquete.lng_datos[0] = (BYTE)(len >> 8); // Byte alto
+    paquete.lng_datos[1] = (BYTE)(len & 0xFF); // Byte bajo
+    
 }
 
 void convertir_ip(const char* ip_str, BYTE ip[4]) {
@@ -38,4 +39,14 @@ void convertir_ip(const char* ip_str, BYTE ip[4]) {
 
 void imprimir_ip(BYTE ip[4]) {
     printf("%c.%c.%c.%c\n", ip[0], ip[1], ip[2], ip[3]);
+}
+
+int fcs(BYTE * arr, int tam){
+    int sum_bits = 0;
+    for(int i=0; i<tam; i++){
+        for(int j=0; j<8; j++){
+            sum_bits += (arr[i] >> j) & 0x01;
+        } 
+    }
+    return sum_bits;
 }
