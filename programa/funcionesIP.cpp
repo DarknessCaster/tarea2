@@ -23,8 +23,27 @@ void encapsularIP(IP &paquete, BYTE TTL, int id, const char* ip_origen, const ch
         }
     paquete.lng_datos[0] = (BYTE)(len >> 8); // Byte alto
     paquete.lng_datos[1] = (BYTE)(len & 0xFF); // Byte bajo
-    paquete.FRAMES[0];
-    paquete.FRAMES[1];
+
+    size_t indice = 0;
+
+    // Empaqueta Longitud de los datos (16 bits)
+    // Al  usar indice++ primero asigna y luego suma 1 a la variable indice.
+    paquete.FRAMES[indice++] = paquete.lng_datos[0] & 0xFF; // Byte alto
+    paquete.FRAMES[indice++] = paquete.lng_datos[1] & 0xFF; // Byte bajo
+
+    paquete.FRAMES[indice++] = paquete.TTL & 0xFF; // Empaqueta TTL (8 bits)
+
+    paquete.FRAMES[indice++] = paquete.id & 0xFF; // Empaqueta Identificación (16 bits)
+
+    // Empaqueta IP origen (32 bits)
+    for (int i = 0; i < 4; i++) {
+        paquete.FRAMES[indice++] = paquete.ip_origen[i];
+    }
+
+    // Empaqueta IP destino (32 bits)
+    for (int i = 0; i < 4; i++) {
+        paquete.FRAMES[indice++] = paquete.ip_destino[i];
+    }
 }
 
 void convertir_ip(const char* ip_str, BYTE ip[4]) {

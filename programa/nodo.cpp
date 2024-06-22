@@ -33,7 +33,7 @@ int main(int nargs, char* arg_arr[]){
         BYTE ipprueba[4] = {0x42, 0x42, 0x42, 0x42};
         printf("%c hexa: %x\n", ip_nodo[0], ip_nodo[0]);
         imprimir_ip(ipprueba);
-
+        
         if(strcmp(ip_nodo, ip_A) == 0){
             printf("Nodo A iniciado correctamente\n");
             printf("A quien desea enviar el mensaje?\n");
