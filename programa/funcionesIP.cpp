@@ -15,7 +15,7 @@ void encapsularIP(IP &paquete, BYTE TTL, int id, const char* ip_origen, const ch
     fgets((char*)paquete.datos, MAX_DATA_SIZE, stdin); // Almacena mensaje
     
     // Almacena longitud de datos
-    len = strlen((const char*)paquete.datos); 
+    len = strlen((const char*)paquete.datos);
         // elimina el salto de linea al final si existe.
         if (len > 0 && paquete.datos[len - 1] == '\n') {
             paquete.datos[len - 1] = '\0';
@@ -48,7 +48,7 @@ void encapsularIP(IP &paquete, BYTE TTL, int id, const char* ip_origen, const ch
     paquete.FCS[0] = (BYTE)(fcs_ip >> 8); // Byte alto del FCS
     paquete.FCS[1] = (BYTE)(fcs_ip & 0xFF); // Byte bajo del FCS
 
-    // Empaquetar suma de verificacion de cabecera 
+    // Empaquetar suma de verificacion de cabecera
     paquete.FRAMES[indice++] = paquete.FCS[0];
     paquete.FRAMES[indice++] = paquete.FCS[1];
 
