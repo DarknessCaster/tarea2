@@ -36,14 +36,23 @@ void encapsularIP(IP &paquete, BYTE TTL, int id, const char* ip_origen, const ch
     paquete.FRAMES[indice++] = paquete.id & 0xFF; // Empaqueta Identificación (16 bits)
 
     // Empaqueta IP origen (32 bits)
-    for (int i = 0; i < 4; i++) {
-        paquete.FRAMES[indice++] = paquete.ip_origen[i];
-    }
+    memcpy(&paquete.FRAMES[indice], paquete.ip_origen, 4);
+    indice += 4;
 
     // Empaqueta IP destino (32 bits)
-    for (int i = 0; i < 4; i++) {
-        paquete.FRAMES[indice++] = paquete.ip_destino[i];
-    }
+    memcpy(&paquete.FRAMES[indice], paquete.ip_destino, 4);
+    indice += 4;
+
+    // Calcular la suma de verificación (FCS) solo para la cabecera
+    int fcs_ip = fcs(paquete.FRAMES, indice);
+    paquete.FCS[0] = (BYTE)(fcs_ip >> 8); // Byte alto del FCS
+    paquete.FCS[1] = (BYTE)(fcs_ip & 0xFF); // Byte bajo del FCS
+
+    // Empaquetar suma de verificacion de cabecera 
+    paquete.FRAMES[indice++] = paquete.FCS[0];
+    paquete.FRAMES[indice++] = paquete.FCS[1];
+
+    memcpy(&paquete.FRAMES[indice], paquete.datos, len); // Empaquetar mensaje
 }
 
 void convertir_ip(const char* ip_str, BYTE ip[4]) {
