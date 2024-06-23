@@ -143,4 +143,5 @@ int menu_enviar(IP &paquete, FILE *vport_tx, BYTE ip_Nodo[4], BYTE ips[6][4]){
         default:
             return 1;
     }
+    return 1;
 }
