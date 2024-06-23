@@ -109,3 +109,38 @@ void enviarIP(IP paquete, FILE *vport_tx, BYTE ip_origen[4], BYTE ip_destino[4],
         writeSlip(paquete.FRAMES, lng_frame, vport_tx);// ENVIAR POR SLIP
     }
 }
+
+void menu_enviar(IP &paquete, FILE *vport_tx, BYTE ip_Nodo[4], BYTE ips[6][4]){
+    int opcion;
+    BYTE TTL; 
+    printf("Nodo %X iniciado correctamente\n", ip_Nodo[0]);
+    printf("A quien desea enviar el mensaje?\n");
+    printf("1. B\n2. C\n3. D\n4. E\n5. A todos (broadcast)\n");
+    printf("Ingrese una opcion: ");
+    scanf("%d", &opcion);
+    getchar();
+    switch (opcion) {
+        case 1: // NODO B
+            TTL = 1;
+            enviarIP(paquete, vport_tx, ip_Nodo, ips[1], TTL);
+            break;
+        case 2: // NODO C
+            TTL = 2;
+            enviarIP(paquete, vport_tx, ip_Nodo, ips[2], TTL);
+            break;
+        case 3: // NODO D
+            TTL = 3;
+            enviarIP(paquete, vport_tx, ip_Nodo, ips[3], TTL);
+            break;
+        case 4: // NODO E
+            TTL = 4;
+            enviarIP(paquete, vport_tx, ip_Nodo, ips[4], TTL);
+            break;
+        case 5: // BROADCAST
+            TTL = 5;
+            enviarIP(paquete, vport_tx, ip_Nodo, ips[5], TTL);
+            break;
+        default:
+            return 1;
+    }
+}
