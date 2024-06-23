@@ -69,10 +69,10 @@ bool desempaquetarIP(IP &paquete){
     paquete.FCS[0] = paquete.FRAMES[indice++];
     paquete.FCS[1] = paquete.FRAMES[indice++];
     // Verificar el FCS si es necesario
-    int fcs_calculado = fcs(paquete.FRAMES, indice - 2);
-    if (fcs_calculado != ((paquete.FCS[0] << 8) | paquete.FCS[1])) {
-        return false; // FCS incorrecto
-    }
+    // int fcs_calculado = fcs(paquete.FRAMES, indice - 2);
+    // if (fcs_calculado != ((paquete.FCS[0] << 8) | paquete.FCS[1])) {
+    //     return false; // FCS incorrecto
+    // }
     memcpy(paquete.datos, &paquete.FRAMES[indice], len);
     return true;
 }
