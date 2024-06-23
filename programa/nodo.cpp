@@ -57,7 +57,7 @@ int main(int nargs, char* arg_arr[]){
                 menu_enviar(paquete, vport_tx, ip_Nodo, ips);
             }
             else if(memcmp(ips[4], ip_Nodo, 4) == 0){
-               menu_enviar(paquete, vport_tx, ip_Nodo, ips);
+                menu_enviar(paquete, vport_tx, ip_Nodo, ips);
             }
             }
         else if(opcion == 2){
@@ -68,32 +68,7 @@ int main(int nargs, char* arg_arr[]){
                 
             }
             else if(strcmp(ip_nodo, ip_B) == 0){
-                while (true) {
-                    len_rx = readSlip(paquete_rx.FRAMES, MAX_DATOS_SIZE + 16, vport_rx);
-                    if (len_rx > 0) { // Si detecta escritura
-                        desempaquetarIP(paquete_rx); // Desempaqueta los datos IP recibidos
-                        short largo = (paquete_rx.lng_datos[0] | (paquete_rx.lng_datos[1] << 8));
-                        printf("Largo ip: %hd   Largo slip: %d\n", largo, len_rx);
-                        paquete_rx.datos[largo] = '\0';
-                        if (memcmp(paquete_rx.ip_destino, ip_Nodo, 4) == 0) {
-                            printf("Se recibio un mensaje tipo unicast:\n%s\n", paquete_rx.datos);
-                        }
-                        else if (memcmp(paquete_rx.ip_destino, ip_Broadcast, 4) == 0){
-                            // Verificar que no sea el propio nodo que envió el broadcast
-                            if (memcmp(paquete_rx.ip_origen, ip_Nodo, 4) != 0) {
-                                printf("Se recibio un mensaje tipo --broadcast--\n");
-                                printf("Mensaje enviado por el nodo %X\n", paquete_rx.ip_origen[0]);
-                                printf("%s", paquete_rx.datos);
-                                paquete_rx.TTL--;
-                                encapsularIP(paquete_rx, paquete_rx.TTL, paquete_rx.id, paquete_rx.ip_origen, paquete_rx.ip_destino);
-                                writeSlip(paquete_rx.FRAMES, len_rx, vport_tx); // ENVIAR POR SLIP
-                            } else {
-                                printf("El mensaje broadcast es propio, se descarta.\n");
-                            }
-                        }
-                    }
-                
-                }
+                menu_recibir(vport_tx, vport_rx, ip_Nodo, ips);
             }
             else if(strcmp(ip_nodo, ip_C) == 0){
                 

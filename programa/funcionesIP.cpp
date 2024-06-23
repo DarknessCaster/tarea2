@@ -145,3 +145,33 @@ int menu_enviar(IP &paquete, FILE *vport_tx, BYTE ip_Nodo[4], BYTE ips[6][4]){
     }
     return 1;
 }
+
+void menu_recibir(FILE *vport_tx, FILE *vport_rx, BYTE ip_Nodo[4], BYTE ips[6][4]){
+    IP paquete_rx;
+    int len_rx = 0;
+    while (true) {
+        len_rx = readSlip(paquete_rx.FRAMES, MAX_DATOS_SIZE + 16, vport_rx);
+        if (len_rx > 0) { // Si detecta escritura
+            desempaquetarIP(paquete_rx); // Desempaqueta los datos IP recibidos
+            short largo = (paquete_rx.lng_datos[0] | (paquete_rx.lng_datos[1] << 8));
+            printf("Largo ip: %hd   Largo slip: %d\n", largo, len_rx);
+            paquete_rx.datos[largo] = '\0';
+            if (memcmp(paquete_rx.ip_destino, ip_Nodo, 4) == 0) {
+                printf("Se recibio un mensaje tipo unicast:\n%s\n", paquete_rx.datos);
+            }
+            else if (memcmp(paquete_rx.ip_destino, ips[5], 4) == 0){
+                // Verificar que no sea el propio nodo que envió el broadcast
+                if (memcmp(paquete_rx.ip_origen, ip_Nodo, 4) != 0) {
+                    printf("Se recibio un mensaje tipo --broadcast--\n");
+                    printf("Mensaje enviado por el nodo %X\n", paquete_rx.ip_origen[0]);
+                    printf("%s", paquete_rx.datos);
+                    paquete_rx.TTL--;
+                    encapsularIP(paquete_rx, paquete_rx.TTL, paquete_rx.id, paquete_rx.ip_origen, paquete_rx.ip_destino);
+                    writeSlip(paquete_rx.FRAMES, len_rx, vport_tx); // ENVIAR POR SLIP
+                } else {
+                    printf("El mensaje broadcast es propio, se descarta.\n");
+                }
+            }
+        }
+    }
+}
