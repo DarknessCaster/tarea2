@@ -7,6 +7,8 @@
 
 void encapsularIP(IP &paquete, BYTE TTL, int id, const char* ip_origen, const char* ip_destino){
     // Almacena longitud de datos
+    printf("Ingrese mensaje a enviar: ");
+    fgets((char*)paquete.datos, MAX_DATA_SIZE, stdin); // Almacena mensaje
     size_t len;
     len = strlen((const char*)paquete.datos);
         // elimina el salto de linea al final si existe.
@@ -20,8 +22,7 @@ void encapsularIP(IP &paquete, BYTE TTL, int id, const char* ip_origen, const ch
     paquete.id = id; // Almacena Identificacion
     convertir_ip(ip_origen, paquete.ip_origen); // Almacena ip de origen
     convertir_ip(ip_destino, paquete.ip_destino); // Almacena ip de destino
-    printf("Ingrese mensaje a enviar: ");
-    fgets((char*)paquete.datos, MAX_DATA_SIZE, stdin); // Almacena mensaje
+
     // Empaqueta Longitud de los datos (16 bits)
     // Al  usar indice++ primero asigna y luego suma 1 a la variable indice.
     size_t indice = 0;
