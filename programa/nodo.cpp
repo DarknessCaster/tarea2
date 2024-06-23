@@ -49,62 +49,17 @@ int main(int nargs, char* arg_arr[]){
             if(memcmp(ips[0], ip_Nodo, 4) == 0){
                 menu_enviar(paquete, vport_tx, ip_Nodo, ips);
             }
-            else if(strcmp(ip_nodo, ip_B) == 0){
-                printf("\nNodo B iniciado correctamente\n");
-                printf("A quien desea enviar el mensaje?\n");
-                printf("1. A\n2. C\n3. D\n4. E\n5. A todos (broadcast)\n");
-                printf("Ingrese una opcion: ");
-                scanf("%d", &opcion);
-                getchar();
-                switch (opcion) {
-                    case 1: // NODO A
-                        encapsularIP(paquete, 4, contador_id, ip_Nodo, ips[0]);
-                        printf("Ip origen: ");
-                        imprimir_ip(paquete.ip_origen);
-                        printf("Ip destino: ");
-                        imprimir_ip(paquete.ip_destino);
-                        printf("ID: %d\n", paquete.id);
-                        printf("TTL: %d\n", paquete.TTL);
-                        printf("Longitud de datos: %d\n", (paquete.lng_datos[0] << 8) | paquete.lng_datos[1]);
-                        contador_id++;
-                        break;
-                    case 2: // NODO C
-                        encapsularIP(paquete, 1, contador_id, ip_Nodo, ips[2]);
-                        break;
-                    case 3: // NODO D
-                        encapsularIP(paquete, 2, contador_id, ip_Nodo, ips[3]);
-                        break;
-                    case 4: // NODO E
-                        encapsularIP(paquete, 3, contador_id, ip_Nodo, ips[4]);
-                        break;
-                    case 5: // BROADCAST
-                        encapsularIP(paquete, 5, contador_id, ip_Nodo, ips[0]);
-                        break;
-                    default:
-                        return 1;
-                }
+            else if(memcmp(ips[1], ip_Nodo, 4) == 0){
+                menu_enviar(paquete, vport_tx, ip_Nodo, ips);
             }
-            else if(strcmp(ip_nodo, ip_C) == 0){
-                printf("\nNodo C iniciado correctamente\n");
-                printf("A quien desea enviar el mensaje?\n");
-                printf("1. A\n2. B\n3. D\n4. E\n5. A todos (broadcast)\n");
-                printf("Ingrese una opcion: ");
-                scanf("%d", &opcion);
+            else if(memcmp(ips[2], ip_Nodo, 4) == 0){
+                menu_enviar(paquete, vport_tx, ip_Nodo, ips);
             }
-            else if(strcmp(ip_nodo, ip_D) == 0){
-                printf("\nNodo D iniciado correctamente\n");
-                printf("A quien desea enviar el mensaje?\n");
-                printf("1. A\n2. B\n3. C\n4. E\n5. A todos (broadcast)\n");
-                printf("Ingrese una opcion: ");
-                scanf("%d", &opcion);
+            else if(memcmp(ips[3], ip_Nodo, 4) == 0){
+                menu_enviar(paquete, vport_tx, ip_Nodo, ips);
             }
-            else if(strcmp(ip_nodo, ip_E) == 0){
-                printf("\nNodo E iniciado correctamente\n");
-                printf("A quien desea enviar el mensaje?\n");
-                printf("1. A\n2. B\n3. C\n4. D\n5. A todos (broadcast)\n");
-                printf("Ingrese una opcion: ");
-                scanf("%d", &opcion);
-
+            else if(memcmp(ips[4], ip_Nodo, 4) == 0){
+               menu_enviar(paquete, vport_tx, ip_Nodo, ips);
             }
             }
         else if(opcion_2 == 2){
