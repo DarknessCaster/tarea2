@@ -151,7 +151,7 @@ void menu_recibir(FILE *vport_tx, FILE *vport_rx, BYTE ip_Nodo[4], BYTE ips[6][4
     IP paquete_rx;
     int len_rx = 0;
     while (true) {
-        len_rx = readSlip(paquete_rx.FRAMES, MAX_DATOS_SIZE + 16, vport_rx);
+        len_rx = readSlip(paquete_rx.FRAMES, MAX_DATOS_SIZE + 20, vport_rx);
         if (len_rx > 0) { // Si detecta escritura
             desempaquetarIP(paquete_rx); // Desempaqueta los datos IP recibidos
             short largo = (paquete_rx.lng_datos[0] | (paquete_rx.lng_datos[1] << 8));
@@ -168,6 +168,7 @@ void menu_recibir(FILE *vport_tx, FILE *vport_rx, BYTE ip_Nodo[4], BYTE ips[6][4
                     printf("%s", paquete_rx.datos);
                     paquete_rx.TTL--;
                     encapsularIP(paquete_rx, paquete_rx.TTL, paquete_rx.id, paquete_rx.ip_origen, paquete_rx.ip_destino);
+                    printf("TTL: %d\n", paquete_rx.TTL);
                     writeSlip(paquete_rx.FRAMES, len_rx, vport_tx); // ENVIAR POR SLIP
                 } else {
                     printf("El mensaje broadcast es propio, se descarta.\n");

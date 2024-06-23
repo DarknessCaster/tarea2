@@ -71,6 +71,9 @@ int main(int nargs, char* arg_arr[]){
                 menu_recibir(vport_tx, vport_rx, ip_Nodo, ips);
             }
         }
+        else{
+            exit(1);
+        }
         fclose(vport_tx);
         fclose(vport_rx);
     } else{
