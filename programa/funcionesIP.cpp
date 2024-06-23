@@ -162,8 +162,8 @@ void menu_recibir(FILE *vport_tx, FILE *vport_rx, BYTE ip_Nodo[4], BYTE ips[6][4
             }
             else if (memcmp(paquete_rx.ip_destino, ips[5], 4) == 0){
                 // Verificar que no sea el propio nodo que envió el broadcast
+                printf("Se recibio un mensaje tipo --broadcast--\n");
                 if (memcmp(paquete_rx.ip_origen, ip_Nodo, 4) != 0) {
-                    printf("Se recibio un mensaje tipo --broadcast--\n");
                     printf("Mensaje enviado por el nodo %X\n", paquete_rx.ip_origen[0]);
                     printf("%s", paquete_rx.datos);
                     paquete_rx.TTL--;
