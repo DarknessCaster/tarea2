@@ -151,6 +151,7 @@ void menu_recibir(FILE *vport_tx, FILE *vport_rx, BYTE ip_Nodo[4], BYTE ips[6][4
     IP paquete_rx;
     int len_rx = 0;
     while (true) {
+        len_rx = 0;
         len_rx = readSlip(paquete_rx.FRAMES, MAX_DATOS_SIZE + 20, vport_rx);
         if (len_rx > 0) { // Si detecta escritura
             desempaquetarIP(paquete_rx); // Desempaqueta los datos IP recibidos
