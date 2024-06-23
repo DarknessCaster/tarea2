@@ -62,13 +62,16 @@ int main(int nargs, char* arg_arr[]){
                         enviarIP(paquete, vport_tx, ip_Nodo, ip_c, TTL);
                         break;
                     case 3: // NODO D
-                        encapsularIP(paquete, 3, contador_id, ip_Nodo, ip_d);
+                        TTL = 3;
+                        enviarIP(paquete, vport_tx, ip_Nodo, ip_d, TTL);
                         break;
                     case 4: // NODO E
-                        encapsularIP(paquete, 4, contador_id, ip_Nodo, ip_e);
+                        TTL = 4;
+                        enviarIP(paquete, vport_tx, ip_Nodo, ip_e, TTL);
                         break;
                     case 5: // BROADCAST
-                        encapsularIP(paquete, 5, contador_id, ip_Nodo, ip_broadcast);
+                        TTL = 5;
+                        enviarIP(paquete, vport_tx, ip_Nodo, ip_broadcast, TTL);
                         break;
                     default:
                         return 1;
