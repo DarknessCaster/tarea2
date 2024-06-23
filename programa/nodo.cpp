@@ -158,11 +158,10 @@ int main(int nargs, char* arg_arr[]){
                         desempaquetarIP(paquete_rx); // Desempaqueta los datos IP recibidos
                         largo = (paquete.lng_datos[0] | (paquete.lng_datos[1] << 8));
                         printf("Largo ip: %hd   Largo slip: %d\n", largo, len_rx);
-                        if (memcmp(paquete_rx.ip_destino, ip_aux, 4) == 0) {
+                        if (memcmp(paquete_rx.ip_destino, ip_Nodo, 4) == 0) {
                             printf("Se recibio un mensaje tipo unicast:\n%s\n", paquete_rx.datos);
                         }
-                        convertir_ip()
-                        if else (memcmp(paquete_rx.ip_destino, ip_aux, 4) == 0){
+                        if else (memcmp(paquete_rx.ip_destino, ip_Nodo, 4) == 0){
 
                         }
                         else{
