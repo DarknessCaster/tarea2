@@ -52,14 +52,13 @@ int main(int nargs, char* arg_arr[]){
                             // Encapsula en la trama FRAMES y ademas se guarda el largo de este en lng_frame
                             lng_frame = encapsularIP(paquete, 1, contador_id, ip_nodo, ip_B);
                             contador_id++;
-                            // LUEGO DE ENCAPSULAR, ENVIAR POR SLIP
-                            writeSlip(paquete.FRAMES, lng_frame, vport_tx);
+                            writeSlip(paquete.FRAMES, lng_frame, vport_tx);// ENVIAR POR SLIP
                         }
                         break;
                     case 2: // NODO C
                         while(true){
                             // Encapsula en la trama FRAMES y ademas se guarda el largo de este en lng_frame
-                            lng_frame = encapsularIP(paquete, 1, contador_id, ip_nodo, ip_C);
+                            lng_frame = encapsularIP(paquete, 2, contador_id, ip_nodo, ip_C);
                             contador_id++;
                             // LUEGO DE ENCAPSULAR, ENVIAR POR SLIP
                             writeSlip(paquete.FRAMES, lng_frame, vport_tx);
@@ -144,12 +143,14 @@ int main(int nargs, char* arg_arr[]){
                 
             }
             else if(strcmp(ip_nodo, ip_B) == 0){
+                convertir_ip(ip_nodo, ip_aux);
                 while (true) {
                     len_rx = readSlip(paquete_rx.FRAMES, MAX_DATOS_SIZE + 16, vport_rx);
                     if (len_rx > 0) { // Si lee algo
                         desempaquetarIP(paquete_rx); // Desempaqueta los datos IP recibidos
-                        if(strcmp(paquete_rx.ip_destino, ip_A)){
-                            
+                        
+                        if(strcmp(paquete_rx.ip_destino, ip_aux) == 0){
+                            printf("Se recibio un mensaje tipo unicast:\n%s\n", paquete_rx.datos);
                         }
                         else{
 
