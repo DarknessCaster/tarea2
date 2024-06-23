@@ -19,6 +19,7 @@ int main(int nargs, char* arg_arr[]){
         int opcion = 0;
         int opcion_2 = 0;
         IP paquete; // Se inicializa paquete con protocolo IP modificado
+        BYTE ip_aux[4];
         //char msg[MAX_DATA_SIZE];
         int contador_id = 0;
         short largo;
@@ -47,29 +48,22 @@ int main(int nargs, char* arg_arr[]){
                 getchar();
                 switch (opcion) {
                     case 1: // NODO B
-                        // Encapsula en la trama FRAMES y ademas se guarda el largo de este en lng_frame
                         while(true){
+                            // Encapsula en la trama FRAMES y ademas se guarda el largo de este en lng_frame
                             lng_frame = encapsularIP(paquete, 1, contador_id, ip_nodo, ip_B);
-                            printf("Ip origen: ");
-                            imprimir_ip(paquete.ip_origen);
-                            printf("Ip destino: ");
-                            imprimir_ip(paquete.ip_destino);
-                            printf("ID: %d\n", paquete.FRAMES[3]);
-                            printf("TTL: %d\n", paquete.FRAMES[2]);
-                            // Desempaquetar la longitud de datos
-                            largo = ((paquete.FRAMES[1] << 8) | paquete.FRAMES[0]);
-                            // Imprimir la longitud de datos
-                            printf("Longitud de datos empaquetado: %hd\n", largo);
-                            largo = ((paquete.lng_datos[1] << 8) | paquete.lng_datos[0]);
-                            printf("Longitud de datos: %hd\n", largo);
                             contador_id++;
                             // LUEGO DE ENCAPSULAR, ENVIAR POR SLIP
-
                             writeSlip(paquete.FRAMES, lng_frame, vport_tx);
                         }
                         break;
                     case 2: // NODO C
-                        encapsularIP(paquete, 2, contador_id, ip_nodo, ip_C);
+                        while(true){
+                            // Encapsula en la trama FRAMES y ademas se guarda el largo de este en lng_frame
+                            lng_frame = encapsularIP(paquete, 1, contador_id, ip_nodo, ip_C);
+                            contador_id++;
+                            // LUEGO DE ENCAPSULAR, ENVIAR POR SLIP
+                            writeSlip(paquete.FRAMES, lng_frame, vport_tx);
+                        }
                         break;
                     case 3: // NODO D
                         encapsularIP(paquete, 3, contador_id, ip_nodo, ip_D);
@@ -152,8 +146,14 @@ int main(int nargs, char* arg_arr[]){
             else if(strcmp(ip_nodo, ip_B) == 0){
                 while (true) {
                     len_rx = readSlip(paquete_rx.FRAMES, MAX_DATOS_SIZE + 16, vport_rx);
-                    if (len_rx > 0) {
+                    if (len_rx > 0) { // Si lee algo
                         desempaquetarIP(paquete_rx); // Desempaqueta los datos IP recibidos
+                        if(strcmp(paquete_rx.ip_destino, ip_A)){
+                            
+                        }
+                        else{
+
+                        }
                         short largo_datos = ((paquete_rx.lng_datos[1] << 8) | paquete_rx.lng_datos[0]);
                         printf("El otro usuario dice: %s\n", paquete_rx.datos);
                     }
