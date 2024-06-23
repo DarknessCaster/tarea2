@@ -42,8 +42,8 @@ void encapsularIP(IP &paquete, BYTE TTL, int id, const char* ip_origen, const ch
 
     // Calcular la suma de verificación (FCS) solo para la cabecera
     int fcs_ip = fcs(paquete.FRAMES, indice);
-    paquete.FCS[0] = (BYTE)(fcs_ip & 0xFF); // Byte bajo del FCS
-    paquete.FCS[1] = (BYTE)(fcs_ip >> 8); // Byte alto del FCS
+    paquete.FCS[0] = (BYTE)(fcs_ip & 0xFF); // Byte alto del FCS
+    paquete.FCS[1] = (BYTE)(fcs_ip >> 8); // Byte bajo del FCS
 
     // Empaquetar suma de verificacion de cabecera
     paquete.FRAMES[indice++] = paquete.FCS[0];
