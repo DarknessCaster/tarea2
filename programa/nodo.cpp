@@ -27,15 +27,11 @@ int main(int nargs, char* arg_arr[]){
         char* ip_nodo = arg_arr[1]; 
         char* puerto_tx = arg_arr[2];
         char* puerto_rx = arg_arr[3];
-
-        // 
+        // Abrir puertos tx y rx
         FILE *vport_tx = fopen(puerto_tx, "w");
         FILE *vport_rx = fopen(puerto_rx, "r");
-
         // Otra forma de implementar ips.
-        BYTE ipprueba[4] = {0x42, 0x42, 0x42, 0x42};
         printf("Nodo %c iniciado correctamente\n", ip_nodo[0]);
-        imprimir_ip(ipprueba);
         printf("Bienvenido al programa nodo\nQue accion desea hacer con el nodo?\n");
         printf("1. Enviar mensaje\n2. Recibir mensaje\n3. Salir\n");
         printf("Ingrese una opcion: ");
@@ -158,16 +154,8 @@ int main(int nargs, char* arg_arr[]){
                     len_rx = readSlip(paquete_rx.FRAMES, MAX_DATOS_SIZE + 16, vport_rx);
                     if (len_rx > 0) {
                         desempaquetarIP(paquete_rx); // Desempaqueta los datos IP recibidos
-                        imprimir_ip(paquete_rx.ip_origen);
-                        printf("IP Destino: ");
-                        imprimir_ip(paquete_rx.ip_destino);
-                        printf("TTL: %d\n", paquete_rx.TTL);
-                        printf("ID: %d\n", paquete_rx.id);
                         short largo_datos = ((paquete_rx.lng_datos[1] << 8) | paquete_rx.lng_datos[0]);
-                        paquete_rx.datos[largo_datos] = '\0'; // Asegurar que se termine la cadena
                         printf("El otro usuario dice: %s\n", paquete_rx.datos);
-                        printf("IP Origen: ");
-
                     }
                 }
 
