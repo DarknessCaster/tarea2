@@ -57,8 +57,10 @@ int main(int nargs, char* arg_arr[]){
                         imprimir_ip(paquete.ip_destino);
                         printf("ID: %d\n", paquete.FRAMES[3]);
                         printf("TTL: %d\n", paquete.FRAMES[2]);
-                        printf("lng: %d\n", (paquete.FRAMES[1] << 8) | paquete.FRAMES[0]);
-                        printf("Longitud de datos: %d\n", (paquete.lng_datos[1] << 8) | paquete.lng_datos[0]);
+                        // Desempaquetar la longitud de datos
+                        short len = (short)((paquete.FRAMES[1] << 8) | paquete.FRAMES[0]);
+                        // Imprimir la longitud de datos
+                        printf("Longitud de datos: %hd\n", len);
                         contador_id++;
                         break;
                     case 2: // NODO C
