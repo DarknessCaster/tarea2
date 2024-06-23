@@ -7,6 +7,14 @@
 
 #define MAX_DATA_SIZE 1500
 
+/*  Nombre de la función: encapsularIP
+ *  Tipo de función: int
+ *  Parámetros: IP &paquete, BYTE TTL, int id, BYTE ip_origen[4], BYTE ip_destino[4].
+ *  Descripción de la función: Esta función empaqueta los datos de la estructura IP en el formato adecuado para la transmisión.
+ *                             Calcula la longitud de los datos, elimina cualquier salto de línea final, y llena los campos del
+ *                             paquete con los valores proporcionados (TTL, id, IP de origen y destino). Además, calcula la suma
+ *                             de verificación (FCS) y la incluye en el paquete. Finalmente, retorna la longitud total del paquete.
+ */
 int encapsularIP(IP &paquete, BYTE TTL, int id, BYTE ip_origen[4], BYTE ip_destino[4]){
     // Almacena longitud de datos
     size_t len;
@@ -54,6 +62,14 @@ int encapsularIP(IP &paquete, BYTE TTL, int id, BYTE ip_origen[4], BYTE ip_desti
     return indice; // retorna largo del paquete
 }
 
+/*  Nombre de la función: desempaquetarIP
+ *  Tipo de función: bool
+ *  Parámetros: IP &paquete
+ *  Descripción de la función: Esta función desempaqueta los datos de la estructura IP.
+ *                             Extrae los campos de longitud de datos, TTL, ID, direcciones IP de origen y destino, y FCS del campo FRAMES.
+ *                             Luego copia los datos del paquete en el campo correspondiente.
+ *                             Retorna true indicando que la operación fue exitosa.
+ */
 bool desempaquetarIP(IP &paquete){
     size_t indice = 0;
     paquete.lng_datos[0] = paquete.FRAMES[indice++];
@@ -71,6 +87,13 @@ bool desempaquetarIP(IP &paquete){
     return true;
 }
 
+/*  Nombre de la función: convertir_ip
+ *  Tipo de función: void
+ *  Parámetros: const char* ip_str, BYTE ip[4].
+ *  Descripción de la función: Esta función convierte una dirección IP en formato de cadena (por ejemplo, "192.168.1.1")
+ *                             a un arreglo de 4 bytes. Si la conversión es exitosa, los octetos de la IP se almacenan
+ *                             en el arreglo ip. Si el formato de la cadena no es válido, se muestra un mensaje de error.
+ */
 void convertir_ip(const char* ip_str, BYTE ip[4]) {
     int octet[4];
     if (sscanf(ip_str, "%d.%d.%d.%d", &octet[0], &octet[1], &octet[2], &octet[3]) == 4) {
@@ -82,10 +105,25 @@ void convertir_ip(const char* ip_str, BYTE ip[4]) {
     }
 }
 
+/*  Nombre de la función: imprimir_ip
+ *  Tipo de función: void
+ *  Parámetros: BYTE ip[4].
+ *  Descripción de la función: Esta función imprime la dirección IP en el formato 
+ *                             "x.x.x.x", donde x es un valor numérico correspondiente
+ *                             a cada byte de la dirección IP.
+ */
 void imprimir_ip(BYTE ip[4]) {
     printf("%c.%c.%c.%c\n", ip[0], ip[1], ip[2], ip[3]);
 }
 
+/*  Nombre de la función: fcs
+ *  Tipo de función: int
+ *  Parámetros: BYTE *arr, int tam.
+ *  Descripción de la función: Esta función calcula la suma de verificación (FCS) 
+ *                             de un arreglo de bytes. La suma de verificación se 
+ *                             obtiene contando el número de bits en 1 en todo el arreglo hasta tam.
+ *                             Retorna la suma total de bits en 1.
+ */
 int fcs(BYTE * arr, int tam){
     int sum_bits = 0;
     for(int i=0; i<tam; i++){
@@ -96,6 +134,13 @@ int fcs(BYTE * arr, int tam){
     return sum_bits;
 }
 
+/*  Nombre de la función: enviarIP
+ *  Tipo de función: void
+ *  Parámetros: IP paquete, FILE *vport_tx, BYTE ip_origen[4], BYTE ip_destino[4], BYTE TTL
+ *  Descripción de la función: Esta función encapsula y envía un paquete IP a través del puerto de transmisión.
+ *                             La función solicita al usuario que ingrese un mensaje, lo encapsula en el paquete IP,
+ *                             y lo envía utilizando la función writeSlip. La función incrementa un contador de ID para cada paquete enviado.
+ */
 void enviarIP(IP paquete, FILE *vport_tx, BYTE ip_origen[4], BYTE ip_destino[4], BYTE TTL){
     int contador_id = 0;
     int lng_frame;
@@ -110,6 +155,13 @@ void enviarIP(IP paquete, FILE *vport_tx, BYTE ip_origen[4], BYTE ip_destino[4],
     }
 }
 
+/*  Nombre de la función: menu_enviar
+ *  Tipo de función: int
+ *  Parámetros: FILE *vport_tx, BYTE ip_Nodo[4], BYTE ips[6][4].
+ *  Descripción de la función: Esta función muestra un menú al usuario para seleccionar el nodo de destino al que desea enviar un mensaje.
+ *                             Según la opción seleccionada, la función llama a la función enviarIP con los parámetros correspondientes,
+ *                             incluyendo el TTL adecuado para cada nodo de destino.
+ */
 int menu_enviar(FILE *vport_tx, BYTE ip_Nodo[4], BYTE ips[6][4]){
     int opcion;
     BYTE TTL; 
@@ -147,6 +199,13 @@ int menu_enviar(FILE *vport_tx, BYTE ip_Nodo[4], BYTE ips[6][4]){
     return 1;
 }
 
+/*  Nombre de la función: menu_recibir
+ *  Tipo de función: void
+ *  Parámetros: FILE *vport_tx, FILE *vport_rx, BYTE ip_Nodo[4], BYTE ips[6][4]
+ *  Descripción de la función: Esta función recibe paquetes a través del puerto de recepción, desempaqueta los datos IP,
+ *                             verifica el tipo de mensaje (unicast, broadcast) y actúa en consecuencia. Si es necesario,
+ *                             retransmite el mensaje al siguiente nodo en la red.
+ */
 void menu_recibir(FILE *vport_tx, FILE *vport_rx, BYTE ip_Nodo[4], BYTE ips[6][4]){
     IP paquete_rx;
     int len_rx = 0;
