@@ -20,6 +20,7 @@ int main(int nargs, char* arg_arr[]){
     if(nargs == 4){
         int opcion = 0;
         BYTE ip_Nodo[4];
+        char msg[1000];
         // Obtener ip del nodo y sus respectivos puertos.
         char* ip_nodo = arg_arr[1]; 
         char* puerto_tx = arg_arr[2];

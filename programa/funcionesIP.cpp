@@ -9,21 +9,19 @@
 
 int encapsularIP(IP &paquete, BYTE TTL, int id, BYTE ip_origen[4], BYTE ip_destino[4]){
     // Almacena longitud de datos
-    printf("Ingrese mensaje a enviar: ");
-    fgets((char*)paquete.datos, MAX_DATA_SIZE, stdin); // Almacena mensaje
     size_t len;
     len = strlen((const char*)paquete.datos);
-        // elimina el salto de linea al final si existe.
-        if (len > 0 && paquete.datos[len - 1] == '\n') {
-            paquete.datos[len - 1] = '\0';
-            len--; // Disminuir la longitud
-        }
+    // elimina el salto de linea al final si existe.
+    if (len > 0 && paquete.datos[len - 1] == '\n') {
+        paquete.datos[len - 1] = '\0';
+        len--; // Disminuir la longitud
+    }
     paquete.lng_datos[0] = (BYTE)(len & 0xFF); // Byte bajo
     paquete.lng_datos[1] = (BYTE)(len >> 8); // Byte alto
     paquete.TTL = TTL; // Almacena TTL
     paquete.id = id; // Almacena Identificacion
-    memcpy(paquete.ip_origen, ip_origen, sizeof(paquete.ip_origen));
-    memcpy(paquete.ip_destino, ip_destino, sizeof(paquete.ip_destino));
+    memcpy(paquete.ip_origen, ip_origen, 4);
+    memcpy(paquete.ip_destino, ip_destino, 4);
     // Al  usar indice++ primero asigna y luego suma 1 a la variable indice.
     int indice = 0;
     // Empaqueta Longitud de los datos (16 bits)
@@ -103,7 +101,8 @@ void enviarIP(IP paquete, FILE *vport_tx, BYTE ip_origen[4], BYTE ip_destino[4],
     int lng_frame;
     while(true){
     // Encapsula en la trama FRAMES y ademas se guarda el largo de este en lng_frame
-
+        printf("Ingrese mensaje a enviar: ");
+        fgets((char*)paquete.datos, MAX_DATA_SIZE, stdin); // Almacena mensaje
         lng_frame = encapsularIP(paquete, TTL, contador_id, ip_origen, ip_destino);
         contador_id++;
         writeSlip(paquete.FRAMES, lng_frame, vport_tx);// ENVIAR POR SLIP
