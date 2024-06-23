@@ -149,14 +149,12 @@ int main(int nargs, char* arg_arr[]){
                     if (len_rx > 0) { // Si lee algo
                         desempaquetarIP(paquete_rx); // Desempaqueta los datos IP recibidos
                         
-                        if(strcmp((const char*)paquete_rx.ip_destino, (const char*)ip_aux) == 0){
+                        if (memcmp(paquete_rx.ip_destino, ip_aux, 4) == 0) {
                             printf("Se recibio un mensaje tipo unicast:\n%s\n", paquete_rx.datos);
                         }
                         else{
 
                         }
-                        short largo_datos = ((paquete_rx.lng_datos[1] << 8) | paquete_rx.lng_datos[0]);
-                        printf("El otro usuario dice: %s\n", paquete_rx.datos);
                     }
                 }
 
