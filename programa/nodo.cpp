@@ -16,8 +16,8 @@ const char* ip_broadcast = "F.F.F.F";
 
 int main(int nargs, char* arg_arr[]){
     if(nargs == 4){
-        BYTE opcion = 0;
-        BYTE opcion_2 = 0;
+        int opcion = 0;
+        int opcion_2 = 0;
         IP paquete; // Se inicializa paquete con protocolo IP modificado
         //char msg[MAX_DATA_SIZE];
         int contador_id = 0;
