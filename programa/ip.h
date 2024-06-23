@@ -16,6 +16,6 @@ struct IP {
     BYTE ip_origen[4];         // 32 bits para la IP de origen
     BYTE ip_destino[4];        // 32 bits para la IP de destino
     BYTE datos[MAX_DATOS_SIZE];          // Arreglo de datos (tamaño variable, máximo 1500 bytes)
-    BYTE FRAMES[MAX_DATOS_SIZE + 17];
+    BYTE FRAMES[MAX_DATOS_SIZE + 16];
 };
 #endif
