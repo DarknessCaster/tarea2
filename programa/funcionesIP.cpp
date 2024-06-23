@@ -73,7 +73,7 @@ bool desempaquetarIP(IP &paquete){
 }
 
 void convertir_ip(const char* ip_str, BYTE ip[4]) {
-    if (strlen(ip_str) == 7 && ip_str[1] == '.' && ip_str[3] == '.' && ip_str[5] == '.') {
+    if (strlen(ip_str) == 11 && ip_str[2] == '.' && ip_str[5] == '.' && ip_str[8] == '.') {
         ip[0] = ip_str[0]; 
         ip[1] = ip_str[2]; 
         ip[2] = ip_str[4]; 
