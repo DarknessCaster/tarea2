@@ -6,5 +6,6 @@ void convertir_ip(const char* ip_str, BYTE ip[4]);
 void imprimir_ip(BYTE ip[4]);
 bool desempaquetarIP(IP &paquete);
 int fcs(BYTE * arr, int tam);
+void enviarIP(IP paquete, FILE *vport_tx, BYTE ip_origen[4], BYTE ip_destino[4], BYTE TTL);
 
 #endif

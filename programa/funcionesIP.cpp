@@ -2,6 +2,8 @@
 #include <string.h>
 #include "ip.h"
 #include "funcionesIP.h"
+#include "serial.h"
+#include "slip.h"
 
 #define MAX_DATA_SIZE 1500
 
@@ -94,4 +96,16 @@ int fcs(BYTE * arr, int tam){
         } 
     }
     return sum_bits;
+}
+
+void enviarIP(IP paquete, FILE *vport_tx, BYTE ip_origen[4], BYTE ip_destino[4], BYTE TTL){
+    int contador_id = 0;
+    int lng_frame;
+    while(true){
+    // Encapsula en la trama FRAMES y ademas se guarda el largo de este en lng_frame
+
+        lng_frame = encapsularIP(paquete, TTL, contador_id, ip_origen, ip_destino);
+        contador_id++;
+        writeSlip(paquete.FRAMES, lng_frame, vport_tx);// ENVIAR POR SLIP
+    }
 }

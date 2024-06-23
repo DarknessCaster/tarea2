@@ -27,9 +27,7 @@ int main(int nargs, char* arg_arr[]){
         int opcion_2 = 0;
         IP paquete; // Se inicializa paquete con protocolo IP modificado
         BYTE ip_Nodo[4];
-        //char msg[MAX_DATA_SIZE];
-        int contador_id = 0;
-        int lng_frame;
+        BYTE TTL = 0;
         // Obtener ip del nodo y sus respectivos puertos.
         char* ip_nodo = arg_arr[1]; 
         char* puerto_tx = arg_arr[2];
@@ -55,12 +53,8 @@ int main(int nargs, char* arg_arr[]){
                 getchar();
                 switch (opcion) {
                     case 1: // NODO B
-                        while(true){
-                            // Encapsula en la trama FRAMES y ademas se guarda el largo de este en lng_frame
-                            lng_frame = encapsularIP(paquete, 1, contador_id, ip_Nodo, ip_b);
-                            contador_id++;
-                            writeSlip(paquete.FRAMES, lng_frame, vport_tx);// ENVIAR POR SLIP
-                        }
+                        TTL = 1;
+                        enviarIP(paquete, vport_tx, ip_Nodo, ip_b, TTL);
                         break;
                     case 2: // NODO C
                         while(true){
