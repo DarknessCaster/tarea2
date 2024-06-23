@@ -7,12 +7,6 @@
 #include "funcionesIP.h"
 
 #define MAX_DATA_SIZE 1500
-const char* ip_A = "10.10.10.10";
-const char* ip_B = "11.11.11.11";
-const char* ip_C = "12.12.12.12";
-const char* ip_D = "13.13.13.13";
-const char* ip_E = "14.14.14.14";
-const char* ip_Broadcast = "15.15.15.15";
 BYTE ips[6][4] = {
     {0xA, 0xA, 0xA, 0xA},  // ip_A
     {0xB, 0xB, 0xB, 0xB},  // ip_B
