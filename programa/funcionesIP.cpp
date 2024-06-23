@@ -64,7 +64,7 @@ bool desempaquetarIP(IP &paquete){
     paquete.id = paquete.FRAMES[indice++];
     memcpy(paquete.ip_origen, &paquete.FRAMES[indice], 4);
     indice += 4;
-    memcpy(paquete.ip_origen, &paquete.FRAMES[indice], 4);
+    memcpy(paquete.ip_destino, &paquete.FRAMES[indice], 4);
     indice += 4;
     paquete.FCS[0] = paquete.FRAMES[indice++];
     paquete.FCS[1] = paquete.FRAMES[indice++];
