@@ -26,7 +26,6 @@ BYTE ips[6][4] = {
 int main(int nargs, char* arg_arr[]){
     if(nargs == 4){
         int opcion = 0;
-        int opcion_2 = 0;
         IP paquete; // Se inicializa paquete con protocolo IP modificado
         BYTE ip_Nodo[4];
         // Obtener ip del nodo y sus respectivos puertos.
@@ -43,8 +42,8 @@ int main(int nargs, char* arg_arr[]){
         printf("Bienvenido al programa nodo\nQue accion desea hacer con el nodo?\n");
         printf("1. Enviar mensaje\n2. Recibir mensaje\n3. Salir\n");
         printf("Ingrese una opcion: ");
-        scanf("%d", &opcion_2);
-        if(opcion_2 == 1){
+        scanf("%d", &opcion);
+        if(opcion == 1){
             //ejecutar emisor
             if(memcmp(ips[0], ip_Nodo, 4) == 0){
                 menu_enviar(paquete, vport_tx, ip_Nodo, ips);
@@ -62,7 +61,7 @@ int main(int nargs, char* arg_arr[]){
                menu_enviar(paquete, vport_tx, ip_Nodo, ips);
             }
             }
-        else if(opcion_2 == 2){
+        else if(opcion == 2){
             //ejecutar receptor
             IP paquete_rx;
             int len_rx = 0;
