@@ -22,11 +22,9 @@ BYTE ips[6][4] = {
     {0xF, 0xF, 0xF, 0xF}   // ip_Broadcast
 };
 
-
 int main(int nargs, char* arg_arr[]){
     if(nargs == 4){
         int opcion = 0;
-        IP paquete; // Se inicializa paquete con protocolo IP modificado
         BYTE ip_Nodo[4];
         // Obtener ip del nodo y sus respectivos puertos.
         char* ip_nodo = arg_arr[1]; 
@@ -62,20 +60,20 @@ int main(int nargs, char* arg_arr[]){
             }
         else if(opcion == 2){
             //ejecutar receptor
-            if(strcmp(ip_nodo, ip_A) == 0){
-                
-            }
-            else if(strcmp(ip_nodo, ip_B) == 0){
+            if(memcmp(ips[0], ip_Nodo, 4) == 0){
                 menu_recibir(vport_tx, vport_rx, ip_Nodo, ips);
             }
-            else if(strcmp(ip_nodo, ip_C) == 0){
-                
+            else if(memcmp(ips[1], ip_Nodo, 4) == 0){
+                menu_recibir(vport_tx, vport_rx, ip_Nodo, ips);
             }
-            else if(strcmp(ip_nodo, ip_D) == 0){
-                
+            else if(memcmp(ips[2], ip_Nodo, 4) == 0){
+                menu_recibir(vport_tx, vport_rx, ip_Nodo, ips);
             }
-            else if(strcmp(ip_nodo, ip_E) == 0){
-                
+            else if(memcmp(ips[3], ip_Nodo, 4) == 0){
+                menu_recibir(vport_tx, vport_rx, ip_Nodo, ips);
+            }
+            else if(memcmp(ips[4], ip_Nodo, 4) == 0){
+                menu_recibir(vport_tx, vport_rx, ip_Nodo, ips);
             }
         }
         fclose(vport_tx);

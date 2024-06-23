@@ -110,9 +110,10 @@ void enviarIP(IP paquete, FILE *vport_tx, BYTE ip_origen[4], BYTE ip_destino[4],
     }
 }
 
-int menu_enviar(IP &paquete, FILE *vport_tx, BYTE ip_Nodo[4], BYTE ips[6][4]){
+int menu_enviar(FILE *vport_tx, BYTE ip_Nodo[4], BYTE ips[6][4]){
     int opcion;
     BYTE TTL; 
+    IP paquete; // Se inicializa paquete con protocolo IP modificado
     printf("Nodo %X iniciado correctamente\n", ip_Nodo[0]);
     printf("A quien desea enviar el mensaje?\n");
     printf("1. B\n2. C\n3. D\n4. E\n5. A todos (broadcast)\n");
