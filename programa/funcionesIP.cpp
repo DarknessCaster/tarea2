@@ -110,7 +110,7 @@ void enviarIP(IP paquete, FILE *vport_tx, BYTE ip_origen[4], BYTE ip_destino[4],
     }
 }
 
-void menu_enviar(IP &paquete, FILE *vport_tx, BYTE ip_Nodo[4], BYTE ips[6][4]){
+int menu_enviar(IP &paquete, FILE *vport_tx, BYTE ip_Nodo[4], BYTE ips[6][4]){
     int opcion;
     BYTE TTL; 
     printf("Nodo %X iniciado correctamente\n", ip_Nodo[0]);

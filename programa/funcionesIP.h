@@ -7,5 +7,5 @@ void imprimir_ip(BYTE ip[4]);
 bool desempaquetarIP(IP &paquete);
 int fcs(BYTE * arr, int tam);
 void enviarIP(IP paquete, FILE *vport_tx, BYTE ip_origen[4], BYTE ip_destino[4], BYTE TTL);
-void menu_enviar(IP &paquete, FILE *vport_tx, BYTE ip_Nodo[4], BYTE ips[6][4]);
+int menu_enviar(IP &paquete, FILE *vport_tx, BYTE ip_Nodo[4], BYTE ips[6][4]);
 #endif
