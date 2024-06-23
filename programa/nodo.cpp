@@ -39,7 +39,7 @@ int main(int nargs, char* arg_arr[]){
         FILE *vport_rx = fopen(puerto_rx, "r");
         // Otra forma de implementar ips.
         convertir_ip(ip_nodo, ip_Nodo);
-        printf("Nodo %c iniciado correctamente\n", ip_Nodo[0]);
+        printf("Nodo %X iniciado correctamente\n", ip_Nodo[0]);
         printf("Bienvenido al programa nodo\nQue accion desea hacer con el nodo?\n");
         printf("1. Enviar mensaje\n2. Recibir mensaje\n3. Salir\n");
         printf("Ingrese una opcion: ");
@@ -47,7 +47,7 @@ int main(int nargs, char* arg_arr[]){
         if(opcion_2 == 1){
             //ejecutar emisor
             if(memcmp(ip_a, ip_Nodo, 4) == 0){
-                printf("Nodo A iniciado correctamente\n");
+                printf("Nodo %X iniciado correctamente\n", ip_Nodo[0]);
                 printf("A quien desea enviar el mensaje?\n");
                 printf("1. B\n2. C\n3. D\n4. E\n5. A todos (broadcast)\n");
                 printf("Ingrese una opcion: ");
