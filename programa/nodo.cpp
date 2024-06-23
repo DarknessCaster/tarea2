@@ -159,16 +159,21 @@ int main(int nargs, char* arg_arr[]){
                         if (memcmp(paquete_rx.ip_destino, ip_Nodo, 4) == 0) {
                             printf("Se recibio un mensaje tipo unicast:\n%s\n", paquete_rx.datos);
                         }
-                        else if (memcmp(paquete_rx.ip_destino, ip_Nodo, 4) == 0){
-
-                        }
-                        else{
-                            paquete_rx.TTL--;
-                            writeSlip(paquete_rx.FRAMES, len_rx, vport_tx);// ENVIAR POR SLIP
+                        else if (memcmp(paquete_rx.ip_destino, ip_Broadcast, 4) == 0){
+                            // Verificar que no sea el propio nodo que envió el broadcast
+                            if (memcmp(paquete_rx.ip_origen, ip_Nodo, 4) != 0) {
+                                printf("Se recibio un mensaje tipo --broadcast--\n");
+                                printf("Mensaje enviado por el nodo %X\n", paquete_rx.ip_origen[0]);
+                                printf("%s", paquete_rx.datos);
+                                paquete_rx.TTL--;
+                                empaquetar(paquete_rx);
+                                writeSlip(paquete_rx.FRAMES, len_rx, vport_tx); // ENVIAR POR SLIP
+                            } else {
+                                printf("El mensaje broadcast es propio, se descarta.\n");
+                            }
                         }
                     }
                 }
-
             }
             else if(strcmp(ip_nodo, ip_C) == 0){
                 
