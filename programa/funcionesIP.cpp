@@ -178,7 +178,7 @@ void menu_recibir(FILE *vport_tx, FILE *vport_rx, BYTE ip_Nodo[4], BYTE ips[6][4
             else{
                 paquete_rx.TTL--;
                 encapsularIP(paquete_rx, paquete_rx.TTL, paquete_rx.id, paquete_rx.ip_origen, paquete_rx.ip_destino);
-                writeSlip(paquete_rx.FRAMES, len_rx, vport_tx); // ENVIAR POR SLIP
+                writeSlip(paquete_rx.FRAMES, len_rx-1, vport_tx); // ENVIAR POR SLIP
                 printf("Retransmitiendo mensaje al siguiente nodo... TTL %d\n", paquete_rx.TTL);
             }
         }
