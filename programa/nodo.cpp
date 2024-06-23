@@ -166,7 +166,7 @@ int main(int nargs, char* arg_arr[]){
                                 printf("Mensaje enviado por el nodo %X\n", paquete_rx.ip_origen[0]);
                                 printf("%s", paquete_rx.datos);
                                 paquete_rx.TTL--;
-                                encapsularIP(paquete_rx, paquete_rx.TTL, int(paquete_rx.id),);
+                                encapsularIP(paquete_rx, paquete_rx.TTL, int(paquete_rx.id), paquete_rx.ip_origen, paquete_rx.ip_destino);
                                 writeSlip(paquete_rx.FRAMES, len_rx, vport_tx); // ENVIAR POR SLIP
                             } else {
                                 printf("El mensaje broadcast es propio, se descarta.\n");
