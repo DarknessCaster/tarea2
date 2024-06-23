@@ -25,8 +25,8 @@ void encapsularIP(IP &paquete, BYTE TTL, int id, const char* ip_origen, const ch
     // Empaqueta Longitud de los datos (16 bits)
     // Al  usar indice++ primero asigna y luego suma 1 a la variable indice.
     size_t indice = 0;
-    paquete.FRAMES[indice++] = paquete.lng_datos[0] & 0xFF; // Byte alto
-    paquete.FRAMES[indice++] = paquete.lng_datos[1] & 0xFF; // Byte bajo
+    paquete.FRAMES[indice++] = paquete.lng_datos[0] & 0xFF; // Byte bajo
+    paquete.FRAMES[indice++] = paquete.lng_datos[1] & 0xFF; // Byte alto
 
     paquete.FRAMES[indice++] = paquete.TTL & 0xFF; // Empaqueta TTL (8 bits)
 
@@ -56,7 +56,7 @@ bool desempaquetarIP(IP &paquete){
     size_t indice = 0;
     paquete.lng_datos[0] = paquete.FRAMES[indice++];
     paquete.lng_datos[1] = paquete.FRAMES[indice++];
-    short len = (paquete.lng_datos[0] << 8) | paquete.lng_datos[1];
+    short len = (paquete.lng_datos[0] | (paquete.lng_datos[1] << 8));
     paquete.TTL = paquete.FRAMES[indice++];
     paquete.id = paquete.FRAMES[indice++];
     memcpy(paquete.ip_origen, &paquete.FRAMES[indice], 4);
