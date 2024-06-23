@@ -156,6 +156,7 @@ int main(int nargs, char* arg_arr[]){
                         desempaquetarIP(paquete_rx); // Desempaqueta los datos IP recibidos
                         short largo = (paquete_rx.lng_datos[0] | (paquete_rx.lng_datos[1] << 8));
                         printf("Largo ip: %hd   Largo slip: %d\n", largo, len_rx);
+                        paquete_rx.datos[largo] = '\0';
                         if (memcmp(paquete_rx.ip_destino, ip_Nodo, 4) == 0) {
                             printf("Se recibio un mensaje tipo unicast:\n%s\n", paquete_rx.datos);
                         }
@@ -173,6 +174,7 @@ int main(int nargs, char* arg_arr[]){
                             }
                         }
                     }
+                
                 }
             }
             else if(strcmp(ip_nodo, ip_C) == 0){
