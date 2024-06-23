@@ -57,7 +57,7 @@ int main(int nargs, char* arg_arr[]){
                     case 1: // NODO B
                         while(true){
                             // Encapsula en la trama FRAMES y ademas se guarda el largo de este en lng_frame
-                            lng_frame = encapsularIP(paquete, 1, contador_id, ip_nodo, ip_B);
+                            lng_frame = encapsularIP(paquete, 1, contador_id, ip_Nodo, ip_b);
                             contador_id++;
                             writeSlip(paquete.FRAMES, lng_frame, vport_tx);// ENVIAR POR SLIP
                         }
@@ -65,20 +65,20 @@ int main(int nargs, char* arg_arr[]){
                     case 2: // NODO C
                         while(true){
                             // Encapsula en la trama FRAMES y ademas se guarda el largo de este en lng_frame
-                            lng_frame = encapsularIP(paquete, 2, contador_id, ip_nodo, ip_C);
+                            lng_frame = encapsularIP(paquete, 2, contador_id, ip_Nodo, ip_c);
                             contador_id++;
                             // LUEGO DE ENCAPSULAR, ENVIAR POR SLIP
                             writeSlip(paquete.FRAMES, lng_frame, vport_tx);
                         }
                         break;
                     case 3: // NODO D
-                        encapsularIP(paquete, 3, contador_id, ip_nodo, ip_D);
+                        encapsularIP(paquete, 3, contador_id, ip_Nodo, ip_d);
                         break;
                     case 4: // NODO E
-                        encapsularIP(paquete, 4, contador_id, ip_nodo, ip_E);
+                        encapsularIP(paquete, 4, contador_id, ip_Nodo, ip_e);
                         break;
                     case 5: // BROADCAST
-                        encapsularIP(paquete, 5, contador_id, ip_nodo, ip_Broadcast);
+                        encapsularIP(paquete, 5, contador_id, ip_Nodo, ip_Broadcast);
                         break;
                     default:
                         return 1;
@@ -93,7 +93,7 @@ int main(int nargs, char* arg_arr[]){
                 getchar();
                 switch (opcion) {
                     case 1: // NODO A
-                        encapsularIP(paquete, 4, contador_id, ip_nodo, ip_A);
+                        encapsularIP(paquete, 4, contador_id, ip_Nodo, ip_a);
                         printf("Ip origen: ");
                         imprimir_ip(paquete.ip_origen);
                         printf("Ip destino: ");
@@ -104,16 +104,16 @@ int main(int nargs, char* arg_arr[]){
                         contador_id++;
                         break;
                     case 2: // NODO C
-                        encapsularIP(paquete, 1, contador_id, ip_nodo, ip_C);
+                        encapsularIP(paquete, 1, contador_id, ip_Nodo, ip_c);
                         break;
                     case 3: // NODO D
-                        encapsularIP(paquete, 2, contador_id, ip_nodo, ip_D);
+                        encapsularIP(paquete, 2, contador_id, ip_Nodo, ip_d);
                         break;
                     case 4: // NODO E
-                        encapsularIP(paquete, 3, contador_id, ip_nodo, ip_E);
+                        encapsularIP(paquete, 3, contador_id, ip_Nodo, ip_e);
                         break;
                     case 5: // BROADCAST
-                        encapsularIP(paquete, 5, contador_id, ip_nodo, ip_Broadcast);
+                        encapsularIP(paquete, 5, contador_id, ip_Nodo, ip_Broadcast);
                         break;
                     default:
                         return 1;
