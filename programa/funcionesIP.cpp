@@ -156,7 +156,7 @@ void menu_recibir(FILE *vport_tx, FILE *vport_rx, BYTE ip_Nodo[4], BYTE ips[6][4
             desempaquetarIP(paquete_rx); // Desempaqueta los datos IP recibidos
             short largo = (paquete_rx.lng_datos[0] | (paquete_rx.lng_datos[1] << 8));
             printf("Largo ip: %hd   Largo slip: %d\n", largo, len_rx);
-            paquete_rx.datos[largo] = '\0';
+            paquete_rx.datos[largo - 1] = '\0';
             if (memcmp(paquete_rx.ip_destino, ip_Nodo, 4) == 0) {
                 printf("Se recibio un mensaje tipo unicast:\n%s\n", paquete_rx.datos);
             }
