@@ -158,7 +158,16 @@ int main(int nargs, char* arg_arr[]){
                     len_rx = readSlip(paquete_rx.FRAMES, MAX_DATOS_SIZE + 16, vport_rx);
                     if (len_rx > 0) {
                         desempaquetarIP(paquete_rx); // Desempaqueta los datos IP recibidos
+                        imprimir_ip(paquete_rx.ip_origen);
+                        printf("IP Destino: ");
+                        imprimir_ip(paquete_rx.ip_destino);
+                        printf("TTL: %d\n", paquete_rx.TTL);
+                        printf("ID: %d\n", paquete_rx.id);
+                        short largo_datos = ((paquete_rx.lng_datos[1] << 8) | paquete_rx.lng_datos[0]);
+                        paquete_rx.datos[largo_datos] = '\0'; // Asegurar que se termine la cadena
                         printf("El otro usuario dice: %s\n", paquete_rx.datos);
+                        printf("IP Origen: ");
+
                     }
                 }
 
