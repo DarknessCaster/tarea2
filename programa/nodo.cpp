@@ -114,7 +114,7 @@ int main(int nargs, char* arg_arr[]){
                         encapsularIP(paquete, 3, contador_id, ip_nodo, ip_E);
                         break;
                     case 5: // BROADCAST
-                        encapsularIP(paquete, 5, contador_id, ip_nodo, ip_broadcast);
+                        encapsularIP(paquete, 5, contador_id, ip_nodo, ip_Broadcast);
                         break;
                     default:
                         return 1;
