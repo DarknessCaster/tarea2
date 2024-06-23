@@ -73,11 +73,12 @@ bool desempaquetarIP(IP &paquete){
 }
 
 void convertir_ip(const char* ip_str, BYTE ip[4]) {
-    if (strlen(ip_str) == 11 && ip_str[2] == '.' && ip_str[5] == '.' && ip_str[8] == '.') {
-        ip[0] = ip_str[0]; 
-        ip[1] = ip_str[2]; 
-        ip[2] = ip_str[4]; 
-        ip[3] = ip_str[6]; 
+    int octet[4];
+
+    if (sscanf(ip_str, "%d.%d.%d.%d", &octet[0], &octet[1], &octet[2], &octet[3]) == 4) {
+        for (int i = 0; i < 4; i++) {
+            ip[i] = (BYTE)octet[i];
+        }
     } else {
         printf("Formato de IP no válido.\n");
     }
