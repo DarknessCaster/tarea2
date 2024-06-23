@@ -101,7 +101,7 @@ void enviarIP(IP paquete, FILE *vport_tx, BYTE ip_origen[4], BYTE ip_destino[4],
     int lng_frame;
     while(true){
     // Encapsula en la trama FRAMES y ademas se guarda el largo de este en lng_frame
-        printf("Ingrese mensaje a enviar: ");
+        printf("Escriba un mensaje: ");
         fgets((char*)paquete.datos, MAX_DATA_SIZE, stdin); // Almacena mensaje
         lng_frame = encapsularIP(paquete, TTL, contador_id, ip_origen, ip_destino);
         contador_id++;
@@ -114,61 +114,38 @@ int menu_enviar(FILE *vport_tx, BYTE ip_Nodo[4], BYTE ips[6][4]){
     int opcion;
     BYTE TTL; 
     IP paquete; // Se inicializa paquete con protocolo IP modificado
-    bool continuar = true;
-
-    while (continuar) {
-        printf("Nodo %X iniciado correctamente\n", ip_Nodo[0]);
-        printf("A quien desea enviar el mensaje?\n");
-        printf("1. B\n2. C\n3. D\n4. E\n5. A todos (broadcast)\n");
-        printf("6. Salir\n");
-        printf("Ingrese una opcion: ");
-        scanf("%d", &opcion);
-        getchar();
-
-        switch (opcion) {
-            case 1: // NODO B
-                TTL = 1;
-                enviarIP(paquete, vport_tx, ip_Nodo, ips[1], TTL);
-                break;
-            case 2: // NODO C
-                TTL = 2;
-                enviarIP(paquete, vport_tx, ip_Nodo, ips[2], TTL);
-                break;
-            case 3: // NODO D
-                TTL = 3;
-                enviarIP(paquete, vport_tx, ip_Nodo, ips[3], TTL);
-                break;
-            case 4: // NODO E
-                TTL = 4;
-                enviarIP(paquete, vport_tx, ip_Nodo, ips[4], TTL);
-                break;
-            case 5: // BROADCAST
-                TTL = 5;
-                enviarIP(paquete, vport_tx, ip_Nodo, ips[5], TTL);
-                break;
-            case 6: // SALIR
-                continuar = false;
-                break;
-            default:
-                printf("Opción no válida. Por favor, intente de nuevo.\n");
-                break;
-        }
-
-        if (continuar) {
-            printf("Mensaje enviado. ¿Desea enviar otro mensaje?\n");
-            printf("1. Sí\n2. No\n");
-            printf("Ingrese una opción: ");
-            scanf("%d", &opcion);
-            getchar();
-
-            if (opcion != 1) {
-                continuar = false;
-            }
-        }
+    printf("Nodo %X iniciado correctamente\n", ip_Nodo[0]);
+    printf("A quien desea enviar el mensaje?\n");
+    printf("1. B\n2. C\n3. D\n4. E\n5. A todos (broadcast)\n");
+    printf("Ingrese una opcion: ");
+    scanf("%d", &opcion);
+    getchar();
+    switch (opcion) {
+        case 1: // NODO B
+            TTL = 1;
+            enviarIP(paquete, vport_tx, ip_Nodo, ips[1], TTL);
+            break;
+        case 2: // NODO C
+            TTL = 2;
+            enviarIP(paquete, vport_tx, ip_Nodo, ips[2], TTL);
+            break;
+        case 3: // NODO D
+            TTL = 3;
+            enviarIP(paquete, vport_tx, ip_Nodo, ips[3], TTL);
+            break;
+        case 4: // NODO E
+            TTL = 4;
+            enviarIP(paquete, vport_tx, ip_Nodo, ips[4], TTL);
+            break;
+        case 5: // BROADCAST
+            TTL = 5;
+            enviarIP(paquete, vport_tx, ip_Nodo, ips[5], TTL);
+            break;
+        default:
+            return 1;
     }
-    return 0;
+    return 1;
 }
-
 
 void menu_recibir(FILE *vport_tx, FILE *vport_rx, BYTE ip_Nodo[4], BYTE ips[6][4]){
     IP paquete_rx;
@@ -201,7 +178,7 @@ void menu_recibir(FILE *vport_tx, FILE *vport_rx, BYTE ip_Nodo[4], BYTE ips[6][4
             else{
                 paquete_rx.TTL--;
                 encapsularIP(paquete_rx, paquete_rx.TTL, paquete_rx.id, paquete_rx.ip_origen, paquete_rx.ip_destino);
-                writeSlip(paquete_rx.FRAMES, len_rx, vport_tx); // ENVIAR POR SLIP
+                writeSlip(paquete_rx.FRAMES, len_rx-1, vport_tx); // ENVIAR POR SLIP
                 printf("Retransmitiendo mensaje al siguiente nodo... TTL %d\n", paquete_rx.TTL);
             }
         }
