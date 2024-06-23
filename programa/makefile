@@ -19,14 +19,14 @@ red:
 	./virtualSocket ../tmp/p7 ../tmp/p8 &
 	./virtualSocket ../tmp/p9 ../tmp/p10 &
 run_nodo_A:
-	./nodo A.A.A.A ../tmp/p1 ../tmp/p10
+	./nodo 10.10.10.10 ../tmp/p1 ../tmp/p10
 run_nodo_B:
-	./nodo B.B.B.B ../tmp/p3 ../tmp/p2
+	./nodo 11.11.11.11 ../tmp/p3 ../tmp/p2
 run_nodo_C:
-	./nodo C.C.C.C ../tmp/p5 ../tmp/p4
+	./nodo 12.12.12.12 ../tmp/p5 ../tmp/p4
 run_nodo_D:
-	./nodo D.D.D.D ../tmp/p7 ../tmp/p6
+	./nodo 13.13.13.13 ../tmp/p7 ../tmp/p6
 run_nodo_E:
-	./nodo E.E.E.E ../tmp/p9 ../tmp/p8
+	./nodo 14.14.14.14 ../tmp/p9 ../tmp/p8
 clean:
 	rm *.o

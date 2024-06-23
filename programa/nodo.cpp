@@ -7,19 +7,26 @@
 #include "funcionesIP.h"
 
 #define MAX_DATA_SIZE 1500
-const char* ip_A = "A.A.A.A";
-const char* ip_B = "B.B.B.B";
-const char* ip_C = "C.C.C.C";
-const char* ip_D = "D.D.D.D";
-const char* ip_E = "E.E.E.E";
-const char* ip_broadcast = "F.F.F.F";
+const char* ip_A = "10.10.10.10";
+const char* ip_B = "11.11.11.11";
+const char* ip_C = "12.12.12.12";
+const char* ip_D = "13.13.13.13";
+const char* ip_E = "14.14.14.14";
+const char* ip_Broadcast = "15.15.15.15";
+BYTE ip_a[4] = {0xA, 0xA, 0xA, 0xA};
+BYTE ip_b[4] = {0xB, 0xB, 0xB, 0xB};
+BYTE ip_c[4] = {0xC, 0xC, 0xC, 0xC};
+BYTE ip_d[4] = {0xD, 0xD, 0xD, 0xD};
+BYTE ip_e[4] = {0xF, 0xF, 0xF, 0xF};
+BYTE ip_broadcast[4] = {0xF, 0xF, 0xF, 0xF};
+
 
 int main(int nargs, char* arg_arr[]){
     if(nargs == 4){
         int opcion = 0;
         int opcion_2 = 0;
         IP paquete; // Se inicializa paquete con protocolo IP modificado
-        BYTE ip_aux[4];
+        BYTE ip_Nodo[4];
         //char msg[MAX_DATA_SIZE];
         int contador_id = 0;
         short largo;
@@ -32,14 +39,15 @@ int main(int nargs, char* arg_arr[]){
         FILE *vport_tx = fopen(puerto_tx, "w");
         FILE *vport_rx = fopen(puerto_rx, "r");
         // Otra forma de implementar ips.
-        printf("Nodo %c iniciado correctamente\n", ip_nodo[0]);
+        convertir_ip(ip_nodo, ip_Nodo);
+        printf("Nodo %c iniciado correctamente\n", ip_Nodo[0]);
         printf("Bienvenido al programa nodo\nQue accion desea hacer con el nodo?\n");
         printf("1. Enviar mensaje\n2. Recibir mensaje\n3. Salir\n");
         printf("Ingrese una opcion: ");
         scanf("%d", &opcion_2);
         if(opcion_2 == 1){
             //ejecutar emisor
-            if(strcmp(ip_nodo, ip_A) == 0){
+            if(memcmp(ip_a, ip_Nodo, 4) == 0){
                 printf("Nodo A iniciado correctamente\n");
                 printf("A quien desea enviar el mensaje?\n");
                 printf("1. B\n2. C\n3. D\n4. E\n5. A todos (broadcast)\n");
@@ -146,14 +154,20 @@ int main(int nargs, char* arg_arr[]){
                 convertir_ip(ip_nodo, ip_aux);
                 while (true) {
                     len_rx = readSlip(paquete_rx.FRAMES, MAX_DATOS_SIZE + 16, vport_rx);
-                    if (len_rx > 0) { // Si lee algo
+                    if (len_rx > 0) { // Si detecta escritura
                         desempaquetarIP(paquete_rx); // Desempaqueta los datos IP recibidos
-                        
+                        largo = (paquete.lng_datos[0] | (paquete.lng_datos[1] << 8));
+                        printf("Largo ip: %hd   Largo slip: %d\n", largo, len_rx);
                         if (memcmp(paquete_rx.ip_destino, ip_aux, 4) == 0) {
                             printf("Se recibio un mensaje tipo unicast:\n%s\n", paquete_rx.datos);
                         }
-                        else{
+                        convertir_ip()
+                        if else (memcmp(paquete_rx.ip_destino, ip_aux, 4) == 0){
 
+                        }
+                        else{
+                            paquete_rx.TTL--;
+                            writeSlip(paquete_rx.FRAMES, len_rx, vport_tx);// ENVIAR POR SLIP
                         }
                     }
                 }
