@@ -57,7 +57,7 @@ int main(int nargs, char* arg_arr[]){
                         imprimir_ip(paquete.ip_destino);
                         printf("ID: %d\n", paquete.FRAMES[3]);
                         printf("TTL: %d\n", paquete.FRAMES[2]);
-                        printf("lng: %d\n", (paquete.FRAMES[1] << 8) | paquete.FRAMES[0])
+                        printf("lng: %d\n", (paquete.FRAMES[1] << 8) | paquete.FRAMES[0]);
                         printf("Longitud de datos: %d\n", (paquete.lng_datos[1] << 8) | paquete.lng_datos[0]);
                         contador_id++;
                         break;
