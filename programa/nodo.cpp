@@ -36,7 +36,7 @@ int main(int nargs, char* arg_arr[]){
         BYTE ipprueba[4] = {0x42, 0x42, 0x42, 0x42};
         printf("Nodo %c iniciado correctamente\n", ip_nodo[0]);
         imprimir_ip(ipprueba);
-        printf("Bienvenido al programa nodo\nQue accion desea hacer?\n");
+        printf("Bienvenido al programa nodo\nQue accion desea hacer con el nodo?\n");
         printf("1. Enviar mensaje\n2. Recibir mensaje\n3. Salir\n");
         printf("Ingrese una opcion: ");
         scanf("%d", &opcion_2);
@@ -145,7 +145,21 @@ int main(int nargs, char* arg_arr[]){
             }
         else if(opcion_2 == 2){
             //ejecutar receptor
-            
+            if(strcmp(ip_nodo, ip_A) == 0){
+                
+            }
+            else if(strcmp(ip_nodo, ip_B) == 0){
+                
+            }
+            else if(strcmp(ip_nodo, ip_C) == 0){
+                
+            }
+            else if(strcmp(ip_nodo, ip_D) == 0){
+                
+            }
+            else if(strcmp(ip_nodo, ip_E) == 0){
+                
+            }
         }
 
         
