@@ -79,7 +79,7 @@ int main(int nargs, char* arg_arr[]){
                         encapsularIP(paquete, 4, contador_id, ip_nodo, ip_E);
                         break;
                     case 5: // BROADCAST
-                        encapsularIP(paquete, 5, contador_id, ip_nodo, ip_broadcast);
+                        encapsularIP(paquete, 5, contador_id, ip_nodo, ip_Broadcast);
                         break;
                     default:
                         return 1;
@@ -160,7 +160,7 @@ int main(int nargs, char* arg_arr[]){
                         if (memcmp(paquete_rx.ip_destino, ip_Nodo, 4) == 0) {
                             printf("Se recibio un mensaje tipo unicast:\n%s\n", paquete_rx.datos);
                         }
-                        if else (memcmp(paquete_rx.ip_destino, ip_Nodo, 4) == 0){
+                        else if (memcmp(paquete_rx.ip_destino, ip_Nodo, 4) == 0){
 
                         }
                         else{
