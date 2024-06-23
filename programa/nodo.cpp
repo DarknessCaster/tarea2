@@ -155,7 +155,7 @@ int main(int nargs, char* arg_arr[]){
                     len_rx = readSlip(paquete_rx.FRAMES, MAX_DATOS_SIZE + 16, vport_rx);
                     if (len_rx > 0) { // Si detecta escritura
                         desempaquetarIP(paquete_rx); // Desempaqueta los datos IP recibidos
-                        largo = (paquete.lng_datos[0] | (paquete.lng_datos[1] << 8));
+                        largo = (paquete_rx.lng_datos[0] | (paquete_rx.lng_datos[1] << 8));
                         printf("Largo ip: %hd   Largo slip: %d\n", largo, len_rx);
                         if (memcmp(paquete_rx.ip_destino, ip_Nodo, 4) == 0) {
                             printf("Se recibio un mensaje tipo unicast:\n%s\n", paquete_rx.datos);
