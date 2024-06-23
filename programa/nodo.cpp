@@ -37,19 +37,19 @@ int main(int nargs, char* arg_arr[]){
         if(opcion == 1){
             //ejecutar emisor
             if(memcmp(ips[0], ip_Nodo, 4) == 0){
-                menu_enviar(paquete, vport_tx, ip_Nodo, ips);
+                menu_enviar(vport_tx, ip_Nodo, ips);
             }
             else if(memcmp(ips[1], ip_Nodo, 4) == 0){
-                menu_enviar(paquete, vport_tx, ip_Nodo, ips);
+                menu_enviar(vport_tx, ip_Nodo, ips);
             }
             else if(memcmp(ips[2], ip_Nodo, 4) == 0){
-                menu_enviar(paquete, vport_tx, ip_Nodo, ips);
+                menu_enviar(vport_tx, ip_Nodo, ips);
             }
             else if(memcmp(ips[3], ip_Nodo, 4) == 0){
-                menu_enviar(paquete, vport_tx, ip_Nodo, ips);
+                menu_enviar(vport_tx, ip_Nodo, ips);
             }
             else if(memcmp(ips[4], ip_Nodo, 4) == 0){
-                menu_enviar(paquete, vport_tx, ip_Nodo, ips);
+                menu_enviar(vport_tx, ip_Nodo, ips);
             }
             }
         else if(opcion == 2){
