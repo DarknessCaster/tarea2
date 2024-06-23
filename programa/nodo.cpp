@@ -22,6 +22,7 @@ int main(int nargs, char* arg_arr[]){
         //char msg[MAX_DATA_SIZE];
         int contador_id = 0;
         short largo;
+        int lng_frame;
         // Obtener ip del nodo y sus respectivos puertos.
         char* ip_nodo = arg_arr[1]; 
         char* puerto_tx = arg_arr[2];
@@ -50,7 +51,8 @@ int main(int nargs, char* arg_arr[]){
                 getchar();
                 switch (opcion) {
                     case 1: // NODO B
-                        encapsularIP(paquete, 1, contador_id, ip_nodo, ip_B);
+                        // Encapsula en la trama FRAMES y ademas se guarda el largo de este en lng_frame
+                        lng_frame = encapsularIP(paquete, 1, contador_id, ip_nodo, ip_B);
                         printf("Ip origen: ");
                         imprimir_ip(paquete.ip_origen);
                         printf("Ip destino: ");
@@ -64,6 +66,8 @@ int main(int nargs, char* arg_arr[]){
                         largo = ((paquete.lng_datos[1] << 8) | paquete.lng_datos[0]);
                         printf("Longitud de datos: %hd\n", largo);
                         contador_id++;
+                        // LUEGO DE ENCAPSULAR, ENVIAR POR SLIP
+                        writeSlip(proto.FRAMES, lng_frame, puerto_tx);
                         break;
                     case 2: // NODO C
                         encapsularIP(paquete, 2, contador_id, ip_nodo, ip_C);
