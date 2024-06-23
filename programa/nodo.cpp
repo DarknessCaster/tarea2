@@ -155,7 +155,7 @@ int main(int nargs, char* arg_arr[]){
             }
             else if(strcmp(ip_nodo, ip_B) == 0){
                 while (true) {
-                    int len_rx = readSlip(paquete_rx.FRAMES, MAX_DATOS_SIZE + 16, vport_rx);
+                    len_rx = readSlip(paquete_rx.FRAMES, MAX_DATOS_SIZE + 16, vport_rx);
                     if (len_rx > 0) {
                         desempaquetarIP(paquete_rx); // Desempaqueta los datos IP recibidos
                         printf("El otro usuario dice: %s\n", paquete_rx.datos);
