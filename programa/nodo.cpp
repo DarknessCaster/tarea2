@@ -62,8 +62,6 @@ int main(int nargs, char* arg_arr[]){
             }
         else if(opcion == 2){
             //ejecutar receptor
-            IP paquete_rx;
-            int len_rx = 0;
             if(strcmp(ip_nodo, ip_A) == 0){
                 
             }
