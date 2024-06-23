@@ -29,6 +29,7 @@ int main(int nargs, char* arg_arr[]){
         BYTE ip_Nodo[4];
         BYTE TTL = 0;
         // Obtener ip del nodo y sus respectivos puertos.
+        int contador_id = 0;
         char* ip_nodo = arg_arr[1]; 
         char* puerto_tx = arg_arr[2];
         char* puerto_rx = arg_arr[3];
@@ -57,13 +58,8 @@ int main(int nargs, char* arg_arr[]){
                         enviarIP(paquete, vport_tx, ip_Nodo, ip_b, TTL);
                         break;
                     case 2: // NODO C
-                        while(true){
-                            // Encapsula en la trama FRAMES y ademas se guarda el largo de este en lng_frame
-                            lng_frame = encapsularIP(paquete, 2, contador_id, ip_Nodo, ip_c);
-                            contador_id++;
-                            // LUEGO DE ENCAPSULAR, ENVIAR POR SLIP
-                            writeSlip(paquete.FRAMES, lng_frame, vport_tx);
-                        }
+                        TTL = 2;
+                        enviarIP(paquete, vport_tx, ip_Nodo, ip_c, TTL);
                         break;
                     case 3: // NODO D
                         encapsularIP(paquete, 3, contador_id, ip_Nodo, ip_d);
