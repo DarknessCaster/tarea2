@@ -151,7 +151,6 @@ int main(int nargs, char* arg_arr[]){
                 
             }
             else if(strcmp(ip_nodo, ip_B) == 0){
-                convertir_ip(ip_nodo, ip_aux);
                 while (true) {
                     len_rx = readSlip(paquete_rx.FRAMES, MAX_DATOS_SIZE + 16, vport_rx);
                     if (len_rx > 0) { // Si detecta escritura
@@ -182,8 +181,6 @@ int main(int nargs, char* arg_arr[]){
                 
             }
         }
-
-        
         fclose(vport_tx);
         fclose(vport_rx);
     } else{
