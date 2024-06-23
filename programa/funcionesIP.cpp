@@ -74,7 +74,6 @@ bool desempaquetarIP(IP &paquete){
 
 void convertir_ip(const char* ip_str, BYTE ip[4]) {
     int octet[4];
-
     if (sscanf(ip_str, "%d.%d.%d.%d", &octet[0], &octet[1], &octet[2], &octet[3]) == 4) {
         for (int i = 0; i < 4; i++) {
             ip[i] = (BYTE)octet[i];
