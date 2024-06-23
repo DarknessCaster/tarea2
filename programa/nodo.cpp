@@ -33,9 +33,9 @@ int main(int nargs, char* arg_arr[]){
 
         // Otra forma de implementar ips.
         BYTE ipprueba[4] = {0x42, 0x42, 0x42, 0x42};
-        printf("Intentado iniciar el nodo %c \n", ip_nodo[0]);
+        printf("Nodo %c iniciado correctamente\n", ip_nodo[0]);
         imprimir_ip(ipprueba);
-        printf("Bienvenido al programa nodo\n Que accion desea hacer?\n");
+        printf("Bienvenido al programa nodo\nQue accion desea hacer?\n");
         printf("1. Enviar mensaje\n2. Recibir mensaje\n3. Salir\n");
         printf("Ingrese una opcion: ");
         scanf("%d", &opcion_2);
@@ -57,7 +57,7 @@ int main(int nargs, char* arg_arr[]){
                         imprimir_ip(paquete.ip_destino);
                         printf("ID: %d\n", paquete.FRAMES[3]);
                         printf("TTL: %d\n", paquete.FRAMES[2]);
-                        printf("Longitud de datos: %d\n", (paquete.FRAMES[0] << 8) | paquete.FRAMES[1]);
+                        printf("Longitud de datos: %d\n", paquete.FRAMES[0] | (paquete.FRAMES[1] << 8));
                         contador_id++;
                         break;
                     case 2: // NODO C
