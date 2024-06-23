@@ -5,7 +5,7 @@
 
 #define MAX_DATA_SIZE 1500
 
-int encapsularIP(IP &paquete, BYTE TTL, int id, const char* ip_origen, const char* ip_destino){
+int encapsularIP(IP &paquete, BYTE TTL, int id, BYTE ip_origen[4], BYTE ip_destino[4]){
     // Almacena longitud de datos
     printf("Ingrese mensaje a enviar: ");
     fgets((char*)paquete.datos, MAX_DATA_SIZE, stdin); // Almacena mensaje
@@ -20,12 +20,11 @@ int encapsularIP(IP &paquete, BYTE TTL, int id, const char* ip_origen, const cha
     paquete.lng_datos[1] = (BYTE)(len >> 8); // Byte alto
     paquete.TTL = TTL; // Almacena TTL
     paquete.id = id; // Almacena Identificacion
-    convertir_ip(ip_origen, paquete.ip_origen); // Almacena ip de origen
-    convertir_ip(ip_destino, paquete.ip_destino); // Almacena ip de destino
-
-    // Empaqueta Longitud de los datos (16 bits)
+    memcpy(paquete.ip_origen, ip_origen, sizeof(paquete.ip_origen));
+    memcpy(paquete.ip_destino, ip_destino, sizeof(paquete.ip_destino));
     // Al  usar indice++ primero asigna y luego suma 1 a la variable indice.
     int indice = 0;
+    // Empaqueta Longitud de los datos (16 bits)
     paquete.FRAMES[indice++] = paquete.lng_datos[0]; // Byte bajo
     paquete.FRAMES[indice++] = paquete.lng_datos[1]; // Byte alto
 
