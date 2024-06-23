@@ -29,7 +29,6 @@ int main(int nargs, char* arg_arr[]){
         IP paquete; // Se inicializa paquete con protocolo IP modificado
         BYTE ip_Nodo[4];
         // Obtener ip del nodo y sus respectivos puertos.
-        int contador_id = 0;
         char* ip_nodo = arg_arr[1]; 
         char* puerto_tx = arg_arr[2];
         char* puerto_rx = arg_arr[3];
