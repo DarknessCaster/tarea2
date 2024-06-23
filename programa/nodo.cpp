@@ -67,7 +67,7 @@ int main(int nargs, char* arg_arr[]){
                         printf("Longitud de datos: %hd\n", largo);
                         contador_id++;
                         // LUEGO DE ENCAPSULAR, ENVIAR POR SLIP
-                        writeSlip(proto.FRAMES, lng_frame, puerto_tx);
+                        writeSlip(paquete.FRAMES, lng_frame, puerto_tx);
                         break;
                     case 2: // NODO C
                         encapsularIP(paquete, 2, contador_id, ip_nodo, ip_C);
