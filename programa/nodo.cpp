@@ -146,13 +146,17 @@ int main(int nargs, char* arg_arr[]){
         else if(opcion_2 == 2){
             //ejecutar receptor
             IP paquete_rx;
+            int len_rx = 0;
             if(strcmp(ip_nodo, ip_A) == 0){
                 
             }
             else if(strcmp(ip_nodo, ip_B) == 0){
                 while(true){
-                    readSlip(paquete_rx.FRAMES, MAX_DATOS_SIZE + 16, vport_rx);
+                    len_rx = readSlip(paquete_rx.FRAMES, MAX_DATOS_SIZE + 16, vport_rx);
                     desempaquetarIP(paquete_rx);
+                    if(len_rx>0){
+                        printf("El otro usuario dice: %s", paquete.datos);
+                    }
                 }
             }
             else if(strcmp(ip_nodo, ip_C) == 0){
