@@ -13,7 +13,7 @@ const char* ip_C = "12.12.12.12";
 const char* ip_D = "13.13.13.13";
 const char* ip_E = "14.14.14.14";
 const char* ip_Broadcast = "15.15.15.15";
-BYTE ips[][4] = {
+BYTE ips[6][4] = {
     {0xA, 0xA, 0xA, 0xA},  // ip_A
     {0xB, 0xB, 0xB, 0xB},  // ip_B
     {0xC, 0xC, 0xC, 0xC},  // ip_C
@@ -29,7 +29,6 @@ int main(int nargs, char* arg_arr[]){
         int opcion_2 = 0;
         IP paquete; // Se inicializa paquete con protocolo IP modificado
         BYTE ip_Nodo[4];
-        BYTE TTL = 0;
         // Obtener ip del nodo y sus respectivos puertos.
         int contador_id = 0;
         char* ip_nodo = arg_arr[1]; 
@@ -48,7 +47,7 @@ int main(int nargs, char* arg_arr[]){
         if(opcion_2 == 1){
             //ejecutar emisor
             if(memcmp(ips[0], ip_Nodo, 4) == 0){
-                menu_enviar(paquete, vport_tx, ip_Nodo, ips[6][4]);
+                menu_enviar(paquete, vport_tx, ip_Nodo, ips);
             }
             else if(strcmp(ip_nodo, ip_B) == 0){
                 printf("\nNodo B iniciado correctamente\n");
