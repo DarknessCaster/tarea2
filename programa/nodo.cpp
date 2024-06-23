@@ -21,7 +21,7 @@ int main(int nargs, char* arg_arr[]){
         IP paquete; // Se inicializa paquete con protocolo IP modificado
         //char msg[MAX_DATA_SIZE];
         int contador_id = 0;
-        
+        int len;
         // Obtener ip del nodo y sus respectivos puertos.
         char* ip_nodo = arg_arr[1]; 
         char* puerto_tx = arg_arr[2];
@@ -58,9 +58,9 @@ int main(int nargs, char* arg_arr[]){
                         printf("ID: %d\n", paquete.FRAMES[3]);
                         printf("TTL: %d\n", paquete.FRAMES[2]);
                         // Desempaquetar la longitud de datos
-                        short len = (short)((paquete.FRAMES[1] << 8) | paquete.FRAMES[0]);
+                        len = ((paquete.FRAMES[1] << 8) | paquete.FRAMES[0]);
                         // Imprimir la longitud de datos
-                        printf("Longitud de datos: %hd\n", len);
+                        printf("Longitud de datos: %d\n", len);
                         contador_id++;
                         break;
                     case 2: // NODO C
