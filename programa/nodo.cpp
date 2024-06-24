@@ -78,9 +78,8 @@ int main(int nargs, char* arg_arr[]){
     } else{
         printf("--------------------MANUAL DE USUARIO--------------------\n");
         printf("---------------------------------------------------------\n");
-        printf("Para ejecutar el programa debe inicializar el nodo con su respectiva letra usando el comando:\n");
-        printf("-------------------\n");
-        printf("\t make run_nodo_(Letra del nodo)\n\n");
+        printf("Para ejecutar el programa debe inicializar el nodo con su respectiva letra usando el comando:\n\n");
+        printf("\t make run_nodo_(Letra del nodo)\n");
         printf("Ejemplos:\n");
         printf("\t Nodo A:\t make run_nodo_A\n");
         printf("\t Nodo B:\t make run_nodo_B\n");
