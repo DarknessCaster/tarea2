@@ -78,7 +78,7 @@ int main(int nargs, char* arg_arr[]){
     } else{
         printf("--------------------MANUAL DE USUARIO--------------------\n");
         printf("---------------------------------------------------------\n");
-        printf("Para ejecutar el programa debe inicializar el nodo con su\n respectiva letra usando el comando:\n\n");
+        printf("Para ejecutar el programa debe inicializar el nodo con su\nrespectiva letra usando el comando:\n\n");
         printf("\t make run_nodo_(Letra del nodo)\n\n");
         printf("Ejemplos:\n\n");
         printf("\t Nodo A:\t make run_nodo_A\n");
@@ -89,7 +89,7 @@ int main(int nargs, char* arg_arr[]){
         printf("Descripción del Programa:\n");
         printf("-------------------------\n");
         printf("Este programa simula una red de nodos interconectados en un anillo. Cada nodo puede enviar o recibir\n");
-        printf("mensajes a otros nodos a través de un protocolo IP modificado. Los mensajes pueden ser unicast (a un\n solo nodo)");
+        printf("mensajes a otros nodos a través de un protocolo IP modificado. Los mensajes pueden ser unicast (a un\nsolo nodo)");
         printf("o broadcast (a todos los nodos).\n\n");
     }
     return 0;
