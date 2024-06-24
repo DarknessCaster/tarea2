@@ -150,7 +150,6 @@ void enviarIP(IP paquete, FILE *vport_tx, BYTE ip_origen[4], BYTE ip_destino[4],
         fgets((char*)paquete.datos, MAX_DATA_SIZE, stdin); // Almacena mensaje
         lng_frame = encapsularIP(paquete, TTL, contador_id, ip_origen, ip_destino);
         contador_id++;
-        printf("TTL: %d ID: %d\n", paquete.TTL, paquete.id);
         writeSlip(paquete.FRAMES, lng_frame, vport_tx);// ENVIAR POR SLIP
     }
 }
@@ -214,7 +213,6 @@ void menu_recibir(FILE *vport_tx, FILE *vport_rx, BYTE ip_Nodo[4], BYTE ips[6][4
         if (len_rx > 0) { // Si detecta escritura
             desempaquetarIP(paquete_rx); // Desempaqueta los datos IP recibidos
             short largo = (paquete_rx.lng_datos[0] | (paquete_rx.lng_datos[1] << 8));
-            printf("Largo ip: %hd   Largo slip: %d\n", largo, len_rx);
             paquete_rx.datos[largo] = '\0';
             if (memcmp(paquete_rx.ip_destino, ip_Nodo, 4) == 0) {
                 printf("Se recibio un mensaje tipo unicast:\n%s\n", paquete_rx.datos);
@@ -227,7 +225,6 @@ void menu_recibir(FILE *vport_tx, FILE *vport_rx, BYTE ip_Nodo[4], BYTE ips[6][4
                     printf("%s", paquete_rx.datos);
                     paquete_rx.TTL--;
                     encapsularIP(paquete_rx, paquete_rx.TTL, paquete_rx.id, paquete_rx.ip_origen, paquete_rx.ip_destino);
-                    printf("TTL: %d\n", paquete_rx.TTL);
                     writeSlip(paquete_rx.FRAMES, len_rx, vport_tx); // ENVIAR POR SLIP
                 } else {
                     printf("El mensaje broadcast es propio, se descarta.\n");
@@ -236,8 +233,7 @@ void menu_recibir(FILE *vport_tx, FILE *vport_rx, BYTE ip_Nodo[4], BYTE ips[6][4
             else{
                 paquete_rx.TTL--;
                 encapsularIP(paquete_rx, paquete_rx.TTL, paquete_rx.id, paquete_rx.ip_origen, paquete_rx.ip_destino);
-                writeSlip(paquete_rx.FRAMES, len_rx-1, vport_tx); // ENVIAR POR SLIP
-                printf("Retransmitiendo mensaje al siguiente nodo... TTL %d\n", paquete_rx.TTL);
+                writeSlip(paquete_rx.FRAMES, len_rx, vport_tx); // ENVIAR POR SLIP
             }
         }
     }
