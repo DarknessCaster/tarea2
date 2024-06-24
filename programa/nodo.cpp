@@ -51,7 +51,7 @@ int main(int nargs, char* arg_arr[]){
             else if(memcmp(ips[4], ip_Nodo, 4) == 0){
                 menu_enviar(vport_tx, ip_Nodo, ips);
             }
-            }
+        }
         else if(opcion == 2){
             //ejecutar receptor
             if(memcmp(ips[0], ip_Nodo, 4) == 0){
@@ -99,5 +99,4 @@ int main(int nargs, char* arg_arr[]){
         printf("o broadcast (a todos los nodos).\n\n");
     }
     return 0;
-    }
 }
