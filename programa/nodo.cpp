@@ -80,7 +80,8 @@ int main(int nargs, char* arg_arr[]){
         }
         fclose(vport_tx);
         fclose(vport_rx);
-    } else{
+    } 
+    else{
         printf("--------------------MANUAL DE USUARIO--------------------\n");
         printf("---------------------------------------------------------\n");
         printf("Para ejecutar el programa debe inicializar el nodo con su\nrespectiva letra usando el comando:\n\n");
@@ -98,4 +99,5 @@ int main(int nargs, char* arg_arr[]){
         printf("o broadcast (a todos los nodos).\n\n");
     }
     return 0;
+    }
 }
