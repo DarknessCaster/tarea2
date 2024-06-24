@@ -73,10 +73,11 @@ int main(int nargs, char* arg_arr[]){
         else if (opcion == 3) {
             // Salir del programa
             printf("Programa finalizado correctamente.\n");
-            exit(1);
+            return 0;
         }
         else {
             printf("Opción no válida. Por favor ingrese 1, 2 o 3.\n");
+            return 0;
         }
         fclose(vport_tx);
         fclose(vport_rx);
