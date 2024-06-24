@@ -4,12 +4,8 @@ all:
 	g++ -Wall nodo.cpp -c
 	g++ -Wall funcionesIP.cpp -c
 	g++ -Wall slip.o serial.o funcionesIP.o nodo.o -o nodo
-nodo:
-	g++ -Wall slip.o serial.o funcionesIP.o nodo.o -o nodo
 mk_socket:
 	g++ -Wall virtualSocket.cpp -o virtualSocket
-run_socket_1_2:
-	./virtualSocket ../tmp/p1 ../tmp/p2
 red: 
 	./virtualSocket ../tmp/p1 ../tmp/p2 &
 	./virtualSocket ../tmp/p3 ../tmp/p4 &
