@@ -218,11 +218,11 @@ void menu_recibir(FILE *vport_tx, FILE *vport_rx, BYTE ip_Nodo[4], BYTE ips[6][4
                 printf("Se recibio un mensaje tipo unicast:\n%s\n", paquete_rx.datos);
             }
             else if (memcmp(paquete_rx.ip_destino, ips[5], 4) == 0){
-                // Verificar que no sea el propio nodo que envió el broadcast
                 printf("Se recibio un mensaje tipo --broadcast--\n");
+                // Verificar que no sea el propio nodo que envió el broadcast
                 if (memcmp(paquete_rx.ip_origen, ip_Nodo, 4) != 0) {
                     printf("Mensaje enviado por el nodo %X\n", paquete_rx.ip_origen[0]);
-                    printf("%s", paquete_rx.datos);
+                    printf("%s\n", paquete_rx.datos);
                     paquete_rx.TTL--;
                     encapsularIP(paquete_rx, paquete_rx.TTL, paquete_rx.id, paquete_rx.ip_origen, paquete_rx.ip_destino);
                     writeSlip(paquete_rx.FRAMES, len_rx, vport_tx); // ENVIAR POR SLIP
