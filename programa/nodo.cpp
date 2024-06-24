@@ -76,7 +76,7 @@ int main(int nargs, char* arg_arr[]){
             return 0;
         }
         else {
-            printf("Opción no válida. Por favor ingrese 1, 2 o 3.\n");
+            printf("Opción no válida. Cerrando programa...\n");
             return 0;
         }
         fclose(vport_tx);
